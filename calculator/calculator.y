@@ -8,8 +8,8 @@ void yyerror(const char* s);
 %}
 
 %union {
-	int ival;
-	float fval;
+        int ival;
+        float fval;
 }
 
 %token<ival> T_INT
@@ -36,7 +36,7 @@ line: T_NEWLINE
     | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
 ;
 
-mixed_expression: T_FLOAT                 		 { $$ = $1; }
+mixed_expression: T_FLOAT                                { $$ = $1; }
 	  | mixed_expression T_PLUS mixed_expression	 { $$ = $1 + $3; }
 	  | mixed_expression T_MINUS mixed_expression	 { $$ = $1 - $3; }
 	  | mixed_expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
@@ -64,7 +64,7 @@ expression: T_INT				{ $$ = $1; }
 int main() {
 	yyin = stdin;
 	do {
-		yyparse();
+	        yyparse();
 	} while(!feof(yyin));
 	return 0;
 }
