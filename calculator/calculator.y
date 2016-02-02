@@ -27,7 +27,7 @@ void yyerror(const char* s);
 %%
 
 calculation:
-	   | calculation line
+           | calculation line
 ;
 
 line: T_NEWLINE
@@ -37,38 +37,38 @@ line: T_NEWLINE
 ;
 
 mixed_expression: T_FLOAT                                { $$ = $1; }
-	  | mixed_expression T_PLUS mixed_expression	 { $$ = $1 + $3; }
-	  | mixed_expression T_MINUS mixed_expression	 { $$ = $1 - $3; }
-	  | mixed_expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
-	  | mixed_expression T_DIVIDE mixed_expression	 { $$ = $1 / $3; }
-	  | T_LEFT mixed_expression T_RIGHT		 { $$ = $2; }
-	  | expression T_PLUS mixed_expression	 	 { $$ = $1 + $3; }
-	  | expression T_MINUS mixed_expression	 	 { $$ = $1 - $3; }
-	  | expression T_MULTIPLY mixed_expression 	 { $$ = $1 * $3; }
-	  | expression T_DIVIDE mixed_expression	 { $$ = $1 / $3; }
-	  | mixed_expression T_PLUS expression	 	 { $$ = $1 + $3; }
-	  | mixed_expression T_MINUS expression	 	 { $$ = $1 - $3; }
-	  | mixed_expression T_MULTIPLY expression 	 { $$ = $1 * $3; }
-	  | mixed_expression T_DIVIDE expression	 { $$ = $1 / $3; }
-	  | expression T_DIVIDE expression		 { $$ = $1 / (float)$3; }
+    | mixed_expression T_PLUS mixed_expression  { $$ = $1 + $3; }
+    | mixed_expression T_MINUS mixed_expression { $$ = $1 - $3; }
+    | mixed_expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
+    | mixed_expression T_DIVIDE mixed_expression { $$ = $1 / $3; }
+    | T_LEFT mixed_expression T_RIGHT { $$ = $2; }
+    | expression T_PLUS mixed_expression { $$ = $1 + $3; }
+    | expression T_MINUS mixed_expression { $$ = $1 - $3; }
+    | expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
+    | expression T_DIVIDE mixed_expression { $$ = $1 / $3; }
+    | mixed_expression T_PLUS expression { $$ = $1 + $3; }
+    | mixed_expression T_MINUS expression { $$ = $1 - $3; }
+    | mixed_expression T_MULTIPLY expression { $$ = $1 * $3; }
+    | mixed_expression T_DIVIDE expression { $$ = $1 / $3; }
+    | expression T_DIVIDE expression { $$ = $1 / (float)$3; }
 ;
 
-expression: T_INT				{ $$ = $1; }
-	  | expression T_PLUS expression	{ $$ = $1 + $3; }
-	  | expression T_MINUS expression	{ $$ = $1 - $3; }
-	  | expression T_MULTIPLY expression	{ $$ = $1 * $3; }
-	  | T_LEFT expression T_RIGHT		{ $$ = $2; }
+expression: T_INT { $$ = $1; }
+    | expression T_PLUS expression { $$ = $1 + $3; }
+    | expression T_MINUS expression { $$ = $1 - $3; }
+    | expression T_MULTIPLY expression { $$ = $1 * $3; }
+    | T_LEFT expression T_RIGHT { $$ = $2; }
 ;
 
 %%
 int main() {
-	yyin = stdin;
-	do {
-	        yyparse();
-	} while(!feof(yyin));
-	return 0;
+  yyin = stdin;
+  do {
+    yyparse();
+  } while(!feof(yyin));
+  return 0;
 }
 void yyerror(const char* s) {
-	fprintf(stderr, "Parse error: %s\n", s);
-	exit(1);
+  fprintf(stderr, "Parse error: %s\n", s);
+  exit(1);
 }
