@@ -12,12 +12,12 @@ void yyerror(const char* s);
         float fval;
 }
 
-%token<ival> T_INT
-%token<fval> T_FLOAT
-%token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_LEFT T_RIGHT
-%token T_NEWLINE T_QUIT
-%left T_PLUS T_MINUS
-%left T_MULTIPLY T_DIVIDE
+%token<ival> INT
+%token<fval> FLOAT
+%token PLUS MINUS MULTIPLY DIVIDE LEFT RIGHT
+%token NEWLINE QUIT
+%left PLUS MINUS
+%left MULTIPLY DIVIDE
 
 %type<ival> expression
 %type<fval> mixed_expression
@@ -30,34 +30,34 @@ calculation:
            | calculation line
 ;
 
-line: T_NEWLINE
-    | mixed_expression T_NEWLINE { printf("\tResult: %f\n", $1);}
-    | expression T_NEWLINE { printf("\tResult: %i\n", $1); }
-    | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
+line: NEWLINE
+    | mixed_expression NEWLINE { printf("\tResult: %f\n", $1);}
+    | expression NEWLINE { printf("\tResult: %i\n", $1); }
+    | QUIT NEWLINE { printf("bye!\n"); exit(0); }
 ;
 
-mixed_expression: T_FLOAT                                { $$ = $1; }
-    | mixed_expression T_PLUS mixed_expression  { $$ = $1 + $3; }
-    | mixed_expression T_MINUS mixed_expression { $$ = $1 - $3; }
-    | mixed_expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
-    | mixed_expression T_DIVIDE mixed_expression { $$ = $1 / $3; }
-    | T_LEFT mixed_expression T_RIGHT { $$ = $2; }
-    | expression T_PLUS mixed_expression { $$ = $1 + $3; }
-    | expression T_MINUS mixed_expression { $$ = $1 - $3; }
-    | expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
-    | expression T_DIVIDE mixed_expression { $$ = $1 / $3; }
-    | mixed_expression T_PLUS expression { $$ = $1 + $3; }
-    | mixed_expression T_MINUS expression { $$ = $1 - $3; }
-    | mixed_expression T_MULTIPLY expression { $$ = $1 * $3; }
-    | mixed_expression T_DIVIDE expression { $$ = $1 / $3; }
-    | expression T_DIVIDE expression { $$ = $1 / (float)$3; }
+mixed_expression: FLOAT                                { $$ = $1; }
+    | mixed_expression PLUS mixed_expression  { $$ = $1 + $3; }
+    | mixed_expression MINUS mixed_expression { $$ = $1 - $3; }
+    | mixed_expression MULTIPLY mixed_expression { $$ = $1 * $3; }
+    | mixed_expression DIVIDE mixed_expression { $$ = $1 / $3; }
+    | LEFT mixed_expression RIGHT { $$ = $2; }
+    | expression PLUS mixed_expression { $$ = $1 + $3; }
+    | expression MINUS mixed_expression { $$ = $1 - $3; }
+    | expression MULTIPLY mixed_expression { $$ = $1 * $3; }
+    | expression DIVIDE mixed_expression { $$ = $1 / $3; }
+    | mixed_expression PLUS expression { $$ = $1 + $3; }
+    | mixed_expression MINUS expression { $$ = $1 - $3; }
+    | mixed_expression MULTIPLY expression { $$ = $1 * $3; }
+    | mixed_expression DIVIDE expression { $$ = $1 / $3; }
+    | expression DIVIDE expression { $$ = $1 / (float)$3; }
 ;
 
-expression: T_INT { $$ = $1; }
-    | expression T_PLUS expression { $$ = $1 + $3; }
-    | expression T_MINUS expression { $$ = $1 - $3; }
-    | expression T_MULTIPLY expression { $$ = $1 * $3; }
-    | T_LEFT expression T_RIGHT { $$ = $2; }
+expression: INT { $$ = $1; }
+    | expression PLUS expression { $$ = $1 + $3; }
+    | expression MINUS expression { $$ = $1 - $3; }
+    | expression MULTIPLY expression { $$ = $1 * $3; }
+    | LEFT expression RIGHT { $$ = $2; }
 ;
 
 %%
@@ -70,5 +70,6 @@ int main() {
 }
 void yyerror(const char* s) {
   fprintf(stderr, "Parse error: %s\n", s);
+  // direct jump out when parsing error....
   exit(1);
 }
