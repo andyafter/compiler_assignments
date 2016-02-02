@@ -1,4 +1,4 @@
 *~
 *.tab.*
-*.yy.*
-
+*.yy.c
+calculator
