@@ -16,12 +16,15 @@
 "+"  {return PLUS;}
 "-"  {return MINUS;}
 "*"  {return MULTIPLY;}
-"**" {return EXPONENTIAL;}
+"**" {return POWER;}
 "/"  {return DIVIDE;}
 "("  {return LEFT;}
 ")"  {return RIGHT;}
-; //"!"  { return FACTORIAL; }
-
+"!"  { return FACTORIAL; }
+; //("pi")|("PI") { return PI; }
+; //("mod")|("MOD") { return MOD; }
+; //("pow")|("POW") {	return POW; }
+("sqrt")|("SQRT") { return SQRT; }
 
 "exit"  {return QUIT;}
 "quit"  {return QUIT;}
