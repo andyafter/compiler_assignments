@@ -2,6 +2,7 @@
 This project is a simple calculator implemented with flex and bison.
 
 ## Features
+* Floating point numbers, integers and hexadecimals
 * Basic arithmetic following BODMAS rules e.g, 4 * (3 + 2) = 20
 * Standard functions (modulo, ceil, abs, floor, power(**))
 * Logarithmic functions (log2, log10)
