@@ -10,9 +10,9 @@ lex.yy.c: token.l calculator.tab.h
 
 calculator: lex.yy.c calculator.tab.c calculator.tab.h
 ifeq ($(OS), Darwin)
-	gcc -o calculator calculator.tab.c lex.yy.c -ll
+	g++  -o calculator calculator.tab.c lex.yy.c -ll
 else
-	gcc -o calculator calculator.tab.c lex.yy.c -lfl
+	g++ -o calculator calculator.tab.c lex.yy.c -lfl
 endif
 
 clean:

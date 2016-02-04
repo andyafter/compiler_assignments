@@ -12,7 +12,8 @@
 [ \t]   ; // ignore all whitespace
 [0-9]+\.[0-9]+  {yylval.fval = atof(yytext); return FLOAT;}
 [0-9]+  {yylval.ival = atoi(yytext); return INT;}
-\n {return NEWLINE;}
+[\n] {return NEWLINE;}
+<<EOF>> {return ENDF;}
 "+"  {return PLUS;}
 "-"  {return MINUS;}
 "*"  {return MULTIPLY;}
@@ -21,10 +22,22 @@
 "("  {return LEFT;}
 ")"  {return RIGHT;}
 "!"  { return FACTORIAL; }
-; //("pi")|("PI") { return PI; }
-; //("mod")|("MOD") { return MOD; }
-; //("pow")|("POW") {	return POW; }
+("pi")|("PI") { return PI; }
+("mod")|("MOD") { return MOD;}
 ("sqrt")|("SQRT") { return SQRT; }
+"test" {return TEST;}
+("floor")|("FLOOR") { return FLOOR; }
+("ceil")|("CEIL") { return CEIL; }
+("abs")|("ABS") { return ABS; }
+("cos")|("COS") { return COS; }
+("sin")|("SIN") { return SIN; }
+("tan")|("TAN") { return TAN; }
+("sinh")|("SINH") { return SINH; }
+("cosh")|("COSH") { return COSH; }
+("tanh")|("TANH") { return TANH; }
+("sqrt")|("SQRT") { return SQRT; }
+("log2")|("LOG2") { return LOG2; }
+("log10")|("LOG10") { return LOG10; }
 
 "exit"  {return QUIT;}
 "quit"  {return QUIT;}
