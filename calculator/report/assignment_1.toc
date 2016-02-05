@@ -1,0 +1,5 @@
+\contentsline {subsection}{Design of Calculator}{3}
+\contentsline {subsection}{Installation}{3}
+\contentsline {subsection}{Numbering System and Basic Calculation}{3}
+\contentsline {subsection}{Scientific Calculation}{4}
+\contentsline {subsection}{Challenges and Solutions}{4}

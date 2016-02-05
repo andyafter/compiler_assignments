@@ -57,7 +57,7 @@ line: NEWLINE
     | ENDF {return 0;}
 ;
 
-mixed_expression: FLOAT { $$ = $1; }
+mixed_expression: FLOAT {$$ = $1;}
     | constant
     | function
     | mixed_expression PLUS mixed_expression  { $$ = $1 + $3; }
@@ -66,6 +66,7 @@ mixed_expression: FLOAT { $$ = $1; }
     | mixed_expression DIVIDE mixed_expression { $$ = $1 / $3; }
     | mixed_expression POWER mixed_expression {$$ = pow($1, $3);}
     | LEFT mixed_expression RIGHT { $$ = $2; }
+    | MINUS mixed_expression { $$ = -$2; }
     | expression PLUS mixed_expression { $$ = $1 + $3; }
     | expression MINUS mixed_expression { $$ = $1 - $3; }
     | expression MULTIPLY mixed_expression { $$ = $1 * $3; }
@@ -81,7 +82,6 @@ mixed_expression: FLOAT { $$ = $1; }
 ;
 
 expression: INT { $$ = $1; } // Here I put couple easier operations
-    | MINUS expression { $$ = -$2; }
     | expression PLUS expression { $$ = $1 + $3; }
     | expression MINUS expression { $$ = $1 - $3; }
     | expression MULTIPLY expression { $$ = $1 * $3; }
@@ -89,7 +89,7 @@ expression: INT { $$ = $1; } // Here I put couple easier operations
 ;
 
 function:
-     expression FACTORIAL { $$ = factorial($1); }
+     mixed_expression FACTORIAL { $$ = factorial($1); }
     | SQRT expression { $$ = sqrt($2); }
     | SQRT mixed_expression { $$ = sqrt($2); }
     | expression MOD expression { $$ = modulo($1, $3); }
@@ -109,8 +109,8 @@ trig_function:
      COS expression { $$ = cos($2); }
     | SIN expression { $$ = sin($2); }
     | TAN expression { $$ = tan($2); }
+    | SIN  mixed_expression { $$ = sin($2); }
     | COS mixed_expression { $$ = cos($2); }
-    | SIN mixed_expression { $$ = sin($2); }
     | TAN mixed_expression { $$ = tan($2); }
 ;
 

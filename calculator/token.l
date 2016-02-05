@@ -12,7 +12,7 @@
 
 [ \t]
 "0x"[0-9a-f]{1,8} {yylval.ival = (int)strtol(yytext, NULL, 16); return INT;}
-(([1-9][0-9]*\.?[0-9]*)|(\.[0-9]+))([Ee][+-]?[0-9]+)?  {yylval.fval = atof(yytext); return FLOAT;}
+(([0-9][0-9]*\.?[0-9]*)|(\.[0-9]+))([Ee][+-]?[0-9]+)?  {yylval.fval = atof(yytext); return FLOAT;}
 [0-9]+  {yylval.ival = atoi(yytext); return INT;}
 [\n] {return NEWLINE;}
 <<EOF>> {return ENDF;}

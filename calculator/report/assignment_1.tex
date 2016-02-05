@@ -1,0 +1,357 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ : \hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Perl, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.pl}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment\ \#1} % Assignment title
+\newcommand{\hmwkDueDate}{Friday,\ Feb\ 5th,\ 2016} % Due date
+\newcommand{\hmwkClass}{Design of Optimizing Compilers\ CS5214} % Course/class
+\newcommand{\hmwkClassTime}{18:30} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Weng-Fai Wong} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Pan An(A0134556A)} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+%------------------------------------------
+%\begin{homeworkSection}{}
+%
+%\end{homeworkSection}
+%----------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\begin{homeworkSection}{Design of Calculator}
+This calculator is designed and implemented in Mac OS X system, any
+unix compatible system can be able to install and run the program. The
+calculator is  designed with the utilization of FLex and Bison. Basic
+functionalities in the original design is listed below:
+
+\begin{itemize}
+\item Numerical system. The calculator should be able to detect
+  different data types including: integers, floating point numbers and
+  hexadecimals.
+\item Operations. The Calculator should be able to conduct basic
+  BODMAS rules. Also it should support basic scientific calculations
+  like trigonometric and logrithmic operations.
+\item Batch processing. The calculator should be able to batch process
+  many calculations from a specific file.
+\item Symbolic computation. This feature is not implemented due to the
+  lack of time. But the calculator should be able to integrate with
+  symbolic engines and conduct complex mathmatical operations.
+\end{itemize}
+
+The detailed design and introduction about the calculator is listed in
+the following sections. The tarball name of my project is:
+$$Pan An‐assignment‐1.tar.gz$$
+
+
+\end{homeworkSection}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+\begin{homeworkSection}{Installation}
+The installation of the calculator can be easily done with a
+customized {\bf makefile}. Open terminal and switch to the calculator
+folder:
+
+\vspace{2mm}
+{\bf
+$\$ make   $
+
+$\$ ./calculator $
+}
+
+\vspace{2mm}
+
+The calculator should be running. You can type in any tasks, if the
+task expression is wrong, the calculator will report error and exit.
+
+You can also put multiple tasks to {\bf test.txt}, then enter the
+calculator and type:
+
+\vspace{2mm}
+
+{\bf
+$\$ test   $
+}
+
+\vspace{2mm}
+
+
+the results of all the tasks(before the first wrong task expression)
+should be processed and displayed.
+
+\end{homeworkSection}
+
+
+
+\begin{homeworkSection}{Numbering System and Basic Calculation}
+The numbering system of the calculator supports basic integer,
+scientific floating number and hexadecimals.
+
+Noticing that hexadecimals in this case is all considered and will be
+transformed to 32-bit integers in any task.
+
+Some correct case of scientific floating expression is listed below:
+\begin{itemize}
+\item .1 (0.1)
+\item 1e3 (1000)
+\item 1e-2 (0.01)
+\item .1e (0.1)
+\item -0.1e-4 (-0.00001)
+\end{itemize}
+
+The calcolator supports BODMAS rules expressions. Basic operations
+includes: +, -, *, / and ** (power).
+
+Here is an example of task that contains different operations:
+
+$$(2+3**3)**(3*(4+6)-12)$$
+
+and the result is:
+$210457279823473787946401792.000000$.
+
+\end{homeworkSection}
+
+
+\begin{homeworkSection}{Scientific Calculation}
+
+
+Supported scientific operations are listed below:
+\begin{itemize}
+\item Constant number pi
+\item Trigonometric and hyperbolic: sin, cos, tan, sinh, cosh, tanh
+\item Standard functions: mod, ceil, floor, abs, sqrt
+\item Logrithmics: log2 and log10
+\end{itemize}
+Here is an example of task that contains different operations:
+
+$$(sin(.5*pi)) + (cos(pi))**2$$
+
+Noticing that all of the scientific operation expressions should have
+extra '()' around it.
+
+
+\end{homeworkSection}
+
+\begin{homeworkSection}{Challenges and Solutions}
+During implementation of this calculator, one of the challanges is
+that when designing the calculator the designer should be completely
+clear about each data types and operations. For example: floating
+numbers it self have a lot of cases that should be taken into
+consideration. By using better designed regular expression I was able
+to make sure that it does not go wrong. By splitting up integer number
+and floating number into different expression definition block, I was
+able to manipulate the whole calculation structure without going
+wrong.
+
+Also the utilization of third class libraries greatly reduced the
+amount of work done my myself.
+
+Flex itself controls the whole process of the script, one of the main
+difficulties to make the calculator better accepted by everybody. The
+parsing and loop controlling is controlled by FLex itself. The only
+way to make this work is to override different functions. I used some
+function pointer tricks to make it look better when the program goes
+wrong. Like when the calculator finished the test.txt batch processing
+the program is supposed to give an error saying invalid syntax because
+$EOF$ is not gonna be processed correctly. I override the flex
+function and pointed out come to it, so what you get is:
+$$All Results from Test File!!$$
+
+One thing that I did not achieve in my original design is the symbolic
+engine integration. Since Python has provided strong and mature
+packages for symbolic calculation, I was able to model a better
+version of calculator by having some more expression definitions and
+having the calculator interact with python scripts. However the time
+is not enough for me to implement all these features.
+
+Another difficulties is to consider the operating system compatibility
+of the calculator. Some of flex libraries have different compilation
+rules in different operating systems. Luckily I solved with a simple
+Makefile.
+
+
+
+\end{homeworkSection}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
