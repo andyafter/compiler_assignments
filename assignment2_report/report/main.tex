@@ -102,44 +102,19 @@ am using this one as the answer for the next couple questions.
 
 \subsection{Dominators}
 Most of the time semi-dominators of nodes in a graph is the immediate
-dominator. To make it possible for people to compare, here is the result
-for the immediate dominators of te graph(node: immediate dominator):
-\begin{verbatim}
- 0: 0,
- 1: 0,
- 2: 1,
- 3: 31,
- 4: 3,
- 5: 4,
- 6: 4,
- 7: 3,
- 8: 1,
- 9: 8,
- 10: 9,
- 11: 10,
- 12: 10,
- 13: 12,
- 14: 13,
- 15: 14,
- 16: 15,
- 17: 33,
- 18: 16,
- 19: 34,
- 21: 18,
- 31: 1,
- 33: 16,
- 34: 18,
- 100: 21
-\end{verbatim}
+dominator. The following picture shows the semi-dominator of the given
+diagram:
 
-And the semi-dominators I have computed is listed(node: semi-dominator):
-
-$$ (0: 0), (1: 0), (3: 31), (4: 3), (5: 4), (6: 4), (7: 3), (8, 2)$$
-$$ (9, 8), (10, 9), (11, 10), (12, 10), (13, 12), (14, 13), (15, 14)$$
-$$ (16, 15), (17, 33), (18, 16), (19, 34), (21, 18), (31, 1), (33,
-16), (100, 21)$$
+\begin{figure}
+\centering
+\includegraphics[scale=0.35]{imdom.jpg}
+\caption{Semi Dominator Graph}
+\end{figure}
 
 \subsection{Control Dependency}
+Actually I am a little  skeptical about this one since I actually read
+another source that it does not have to be strict dominance in the
+definition of control dependence.
 \includegraphics[scale=0.3]{cdg.jpg}
 
 \subsection{Strongly Connected Componants}
@@ -147,6 +122,7 @@ A directed graph is called strongly connected if there is a path in
 each direction between each pair of vertices of the graph.
 
 Strongly connected graphs are(all edges amongs these nodes included):
+
 \begin{itemize}
 \item Nodes with self loop: 9, 13, 15, 19
 \item Graph composed with node 16 and 33
@@ -155,46 +131,111 @@ Strongly connected graphs are(all edges amongs these nodes included):
 \item Graph composed with node 9, 10, 11
 \end{itemize}
 
+
 \subsection{Question 7}
-Dominant frontier: 2, 16 and 18.
 
-Block 33 should be inserted with the function.
-
-\section{ Dataflow analysis}
-
-The algorithm can be considered finding the node which  post-dominates
-all node with the $USE(n)>0$. Also the node should be the 'first
-one'.
-
-Consider the following graph:
-\includegraphics[scale=0.5]{pic1.png}
-
-The algorithm is described below, it will return one single node that
-satisfies the need:
+Dominant frontiers of the three nodes are:
 \begin{itemize}
-\item Initiate set $S_{u}, N_{p}$ as two empty sets;
-\item DFS the graph, at the same time calculate $USE(n)$ for each
-  node, and put all nodes with $USE(n)>0$ in to $S_{u}$;
-\item Traverse the graph and calculate the the set of nodes each node post dominates(Lengauer
-  and Tarjan’s Algorithm). Post dominating set of node $i$ is noted as
-  $Dom_{i}$. If $S_{u} \subseteq Dom_{i}$, put node $i$ into $N_{p}$;
-\item For node $i$ in $N_{p}$ after the traversal, if $N_{p} \cap
-  Dom_{i}$ is empty, return the node and terminate the process.
-\item Return the stop node(or none value found).
+\item 31: [8]
+\item 11: [9, 12]
+\item 33: [16, 18]
 \end{itemize}
 
-We assumn that in the graph node {\bf 2 and 4} are with a postive
-$USE(n)$ value(variable is used). The algorithm will first traverse
+\noindent
+Block 8, 9, 12, 16, 18 should be inserted with $\phi$ function.
+
+\section{ Dataflow analysis}
+To be honest, I lost it when it comes to this part in the class so I
+Wikipediaed a little. Also I read the slides but the slides seem not
+so fullfilled in this part(no offence).  So here I will just use the
+expression in terms of data flow equations.
+
+The problem is a typical backward data flow analysis problem. Let
+$def[n]$ be the set of variables that are used in node n before any
+assignment. The function $use[n]$ with lower case letters does the
+exact same thing as $USE[n]$. Let $succ[n]$ be the set of successor nodes
+after node n successfully excutes. Dataflow equations can be expressed as the following:
+\begin{itemize}
+\item $live_{in}[n] = def[n] \cup (live_{out}[n] - use[n])$
+\item$live_{out}[final] = \Phi$
+\item$live_{out}[n] =\bigcup_{p\in succ[n]}live_{in}[p] $
+\end{itemize}
+
+
+The algorithm for solving data flow equation is presented below:
+
+
+{\bf for each} node n in CFG:\\
+\indent
+~~~~$live_{in}[n] = \Phi, live_{out}[n] = \Phi$\\
+\indent
+{\bf repeat}\\
+\indent
+~~~~{\bf for each} node n in CFG:\\
+\indent
+~~~~~~~~ $ live'_{in}[n] = live_{in}[n]$\\
+\indent
+~~~~~~~~ $ live'_{out}[n] = live_{out}[n]$\\
+\indent
+~~~~~~~~ $ live_{in}[n] = use[n] \cup (live_{out}[n] - def[n])$\\
+\indent
+~~~~~~~~ $live_{out}[n] =\bigcup_{p\in succ[n]}live_{in}[p] $\\
+\indent
+{\bf until }$live'_{in}[n] = live_{in}[n]  and live'_{out}[n] =
+  live_{out}[n] for all n $
+
+%The algorithm can be considered finding all the nodes that will never
+%go through those nodes with
+% with the $USE(n)>0$ it reaches {\bf stop}. Also the node should be the 'first
+%one'.
+
+
+
+Consider the following graph:
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{example.jpg}
+\end{figure}
+Assuming  that in the graph node {\bf 3 and 5} are with a postive
+$USE(n)$ value(variable is used) and the variable is {\bf defined} in
+block 1. The algorithm will first traverse
 the graph and find the variable usage, and after this process:
-$$S_{u} = \{2, 4\}$$
+$$S_{u} = \{3, 5\}$$
 
-After this the algorithm does another traversal. finding the nodes
-that post dominates both 2 and 4. After this traversal:
-$$N_{p} = \{6\}$$
 
-And since this 6 is the only reason that post dominates both 2 and 4,
-the algorithm returns node 6.
+Here I assumn there are couple things happening:
+\begin{enumerate}
+\item In node 1:
+  \begin{itemize}
+  \item a = 2;
+\item b = 1;
+\item c = 1;
+  \end{itemize}
+\item Node 2: a = 1, 2, 3, means switch to 4, 3, 6;
+\item Node 5:
+  \begin{itemize}
+  \item c = a - b;
+    \item d = 2;
+  \end{itemize}
+\item Node 3:
+  \begin{itemize}
+    \item d = c + 1;
+    \item if a $>$ d then go to 8, else go to 5;
+  \end{itemize}
+\item Nothing concerns a, b, c, d happens in other nodes;
+\end{enumerate}
 
-But when CFG is very large. The program will enumerate $N_{p}$ again
-to find the first node that satisfies all the condition.
+The program flow will be pretty simple:
+$$1, in=\{\}, out=\{\} \rightarrow 2, in=a, out=\{\}\rightarrow 3,
+in=acd, out=\{\}\rightarrow$$
+$$
+5, in=abcd, out=a\rightarrow 2 in=a, out=cd\rightarrow
+3 in=acd, out=\{\}\rightarrow 8 in=\{\}till stop$$
+
+\vspace{4mm}
+So it actually only concerns nodes 1, 2, 3, 5, 8. And the last uses of
+each variable can be tracked from the flow above.
+
+
 \end{document}

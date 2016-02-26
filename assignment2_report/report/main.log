@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  27 FEB 2016 01:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  27 FEB 2016 07:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -282,64 +282,63 @@ Missing character: There is no Ä in font cmbx12!
 Missing character: There is no ê in font cmbx12!
  [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<cdg.jpg, id=17, 1468.48625pt x 348.30125pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<imdom.jpg, id=14, 541.02126pt x 1215.54124pt>
+File: imdom.jpg Graphic file (type jpg)
+ <use imdom.jpg>
+Package pdftex.def Info: imdom.jpg used on input line 110.
+(pdftex.def)             Requested size: 189.36028pt x 425.44582pt.
+
+<cdg.jpg, id=15, 1468.48625pt x 348.30125pt>
 File: cdg.jpg Graphic file (type jpg)
  <use cdg.jpg>
-Package pdftex.def Info: cdg.jpg used on input line 143.
+Package pdftex.def Info: cdg.jpg used on input line 118.
 (pdftex.def)             Requested size: 440.54927pt x 104.49118pt.
 
-Overfull \hbox (29.54364pt too wide) in paragraph at lines 143--144
+Overfull \hbox (29.54364pt too wide) in paragraph at lines 115--119
 [] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 151.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 127.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
+ [2 <./cdg.jpg>]
+[3 <./imdom.jpg>] <example.jpg, id=23, 326.21875pt x 444.66125pt>
+File: example.jpg Graphic file (type jpg)
 
-<pic1.png, id=18, 304.13625pt x 348.30125pt>
-File: pic1.png Graphic file (type png)
- <use pic1.png>
-Package pdftex.def Info: pic1.png used on input line 170.
-(pdftex.def)             Requested size: 152.06775pt x 174.15019pt.
- [3 <./cdg.jpg>]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
-
-Overfull \hbox (1.97331pt too wide) in paragraph at lines 186--189
-[]\OT1/cmr/m/n/10.95 We as-sumn that in the graph node \OT1/cmr/bx/n/10.95 2 an
-d 4 \OT1/cmr/m/n/10.95 are with a pos-tive $\OML/cmm/m/it/10.95 USE\OT1/cmr/m/n
-/10.95 (\OML/cmm/m/it/10.95 n\OT1/cmr/m/n/10.95 )$ value(variable
- []
-
-[4 <./pic1.png>] (./main.aux) ) 
+<use example.jpg>
+Package pdftex.def Info: example.jpg used on input line 198.
+(pdftex.def)             Requested size: 163.10896pt x 222.33008pt.
+ [4] [5 <./example.jpg>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2975 strings out of 493089
- 40081 string characters out of 6134841
- 107507 words of memory out of 5000000
- 6414 multiletter control sequences out of 15000+600000
+ 2980 strings out of 493089
+ 40162 string characters out of 6134841
+ 109507 words of memory out of 5000000
+ 6419 multiletter control sequences out of 15000+600000
  12873 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,32p,237b,265s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb>
-Output written on main.pdf (4 pages, 225704 bytes).
+</usr/local/texlive/2015/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb>
+Output written on main.pdf (5 pages, 277315 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
