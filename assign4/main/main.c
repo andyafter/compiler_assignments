@@ -9,14 +9,18 @@
 
 
 int main(){
-  int* a,b,c; // one dementional array
+  int *a, *b, *c; // one dementional array
   int i, j, k;
   clock_t begin, end;
   double time_spent;
   begin = clock();
   a = (int *)malloc(100000000*sizeof(int));
+  b = (int *)malloc(100000000*sizeof(int));
+  c = (int *)malloc(100000000*sizeof(int));
   for(i=0;i<100000000;++i){
     a[i] = i;
+    b[i] = -i;
+    c[i] =0;
   }
 
   /*
