@@ -3,9 +3,9 @@
 #include<stdlib.h>
 
 
-#define X 1000
-#define Y 1000
-#define Z 1000
+#define X 10000
+#define Y 10000
+#define Z 10000
 
 
 int main(){
@@ -17,8 +17,8 @@ int main(){
   a = (int *)malloc(100000000*sizeof(int));
   for(i=0;i<100000000;++i){
     a[i] = i;
-    printf("%d\n",a[i]);
   }
+
   /*
   for(i=0;i<X;++i){
     for(j=0;j<Y;++j){
