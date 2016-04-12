@@ -2,3 +2,4 @@
 *.tab.*
 *.yy.c
 calculator\calculator
+*main_out
