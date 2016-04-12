@@ -9,7 +9,10 @@ Then there will be **main_out** which is the output of the compilation.
 |----:|:----:|:----|
 |main.c| nothing much| Simple matrix multiplication for two 1000X1000 matrixes|
 
-## Installation
+## ToDo
+- Add comparison of different ways to allocate memory. (one or two dementions, which one is faster)
+- Add comparison for different data types, and structures like union.
+- Add methods for checking whether the data is correct(CRC, or data compression, where to store)
 
 ## Running
 
