@@ -30,10 +30,10 @@ int main(){
     for(i=0;i<X*Z;++i)
         c[i]=0;
 
-    print_matrix(a, X, Y);
-    print_matrix(b, Y, Z);
+    //print_matrix(a, X, Y);
+    //print_matrix(b, Y, Z);
     matrix_multiply(a, b, c, X, Y, Z);
-    print_matrix(c, X, Z);
+    //print_matrix(c, X, Z);
     // matrix multiplication here
 
     end = clock();
@@ -69,6 +69,7 @@ void matrix_multiply(int *mat1, int *mat2, int *result, int i, int j, int k){
                 result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
             }
         }
+        printf("%d\t%d\n", m, i);
     }
 
 }
