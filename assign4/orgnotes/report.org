@@ -1,0 +1,10 @@
+
+* Matrix Multiplication with GCC
+
+** Abstract
+Large matrix multiplications can be very handy considering 
+the limitations of cache and the speed of the the RAM access.
+This report is about conducting matrix multiplication with 
+low level optimizations. Loop tiling and LLVM optimizations
+are used in order to provide an acceptable result for a better
+scheduling and work load reduction. 
