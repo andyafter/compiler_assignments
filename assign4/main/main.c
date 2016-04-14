@@ -7,20 +7,20 @@
 #define Y 40000
 #define Z 50000
 
-void print_matrix(int *mat, int i, int j);
-void matrix_multiply(int *mat1, int *mat2, int *result, int i, int j, int k);
+void print_matrix(float *mat, int i, int j);
+void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k);
 // 
 
 
 int main(){
-    int *a, *b, *c; // one dementional array
+    float *a, *b, *c; // one dementional array
     int i, j, k;
     clock_t begin, end;
     double time_spent;
     begin = clock();
-    a = (int *)malloc(X*Y*sizeof(int));
-    b = (int *)malloc(Y*Z*sizeof(int));
-    c = (int *)malloc(X*Z*sizeof(int));
+    a = (float *)malloc(X*Y*sizeof(float));
+    b = (float *)malloc(Y*Z*sizeof(float));
+    c = (float *)malloc(X*Z*sizeof(float));
     for(i=0;i<X*Y;++i){
         a[i] = i;
     }
@@ -42,7 +42,7 @@ int main(){
 }
 
 
-void print_matrix(int *mat, int i, int j){
+void print_matrix(float *mat, int i, int j){
     // i rows and j columns
     int n, m, k;
     k = i*i;
@@ -56,7 +56,7 @@ void print_matrix(int *mat, int i, int j){
 }
 
 
-void matrix_multiply(int *mat1, int *mat2, int *result, int i, int j, int k){
+void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k){
     // mat1 is i rows and j columns
     // mat2 is j rows and k columns
     // result should have i rows and k columns

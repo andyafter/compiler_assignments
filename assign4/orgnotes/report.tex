@@ -1,0 +1,77 @@
+% Created 2016-04-14 Thu 21:52
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{潘安}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={潘安},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 24.5.1 (Org mode 8.3.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+Org-mode Testing Report
+\section{Matrix Multiplication with GCC}
+\label{sec:orgheadline3}
+
+\subsection{Abstract}
+\label{sec:orgheadline1}
+Large matrix multiplications can be very handy considering 
+the limitations of cache and the speed of the the RAM access.
+This report is about conducting matrix multiplication with 
+low level optimizations. Loop tiling and LLVM optimizations
+are used in order to provide an acceptable result for a better
+scheduling and work load reduction.
+
+\subsection{Basic Matrix Multiplication}
+\label{sec:orgheadline2}
+The first version of matrix multiplication is done with
+ two arrays of integers(simply for testing). My computer is 
+an Alienware 17 R5, and some of the hardware specifications are listed
+below:
+\begin{center}
+\begin{tabular}{lr}
+Params & Value\\
+\hline
+Architecture: & x86\(_{\text{64}}\)\\
+CPU op-mode(s): & 32-bit, 64-bit\\
+Byte Order: & Little Endian\\
+CPU(s): & 8\\
+On-line CPU(s) list: & 0-7\\
+Thread(s) per core: & 2\\
+Core(s) per socket: & 4\\
+Socket(s): & 1\\
+NUMA node(s): & 1\\
+Vendor ID: & GenuineIntel\\
+CPU family: & 6\\
+Model: & 60\\
+Stepping: & 3\\
+CPU MHz: & 901.875\\
+BogoMIPS: & 4788.98\\
+Virtualization: & VT-x\\
+L1d cache: & 32K\\
+L1i cache: & 32K\\
+L2 cache: & 256K\\
+L3 cache: & 6144K\\
+NUMA node0 CPU(s): & 0-7\\
+\end{tabular}
+\end{center}
+\end{document}
