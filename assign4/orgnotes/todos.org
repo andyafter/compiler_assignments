@@ -1,0 +1,10 @@
+
+
+* Write Generalized Matrix Multiple
+
+** TODO Write the Function!!!
+   DEADLINE: <2016-04-14 Thu>
+
+** TODO Basically just to try org mode
+
+* Do Math For Assignment 3

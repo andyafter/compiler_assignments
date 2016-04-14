@@ -26,5 +26,6 @@
     '("reflection" LaTeX-env-args ["argument"] 1)
     '("exercise" LaTeX-env-args ["argument"] 1)
     '("lemma" LaTeX-env-args ["argument"] 1)
-    '("theorem" LaTeX-env-args ["argument"] 1))))
+    '("theorem" LaTeX-env-args ["argument"] 1)))
+ :latex)
 
