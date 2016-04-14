@@ -30,11 +30,9 @@ int main(){
     for(i=0;i<X*Z;++i)
         c[i]=0;
 
-    //print_matrix(a, X, Y);
-    //print_matrix(b, Y, Z);
+    // matrix mutiplication here
+    printf("Starting everything!!!\n");
     matrix_multiply(a, b, c, X, Y, Z);
-    //print_matrix(c, X, Z);
-    // matrix multiplication here
 
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
@@ -63,13 +61,18 @@ void matrix_multiply(int *mat1, int *mat2, int *result, int i, int j, int k){
     // mat2 is j rows and k columns
     // result should have i rows and k columns
     int m, n, l;
+    double time_spent;
+    clock_t begin, end;
     for(m=0; m<i; ++m){
+        begin = clock();
         for(n=0; n<k; ++n){
             for(l=0; l<j; ++l){
                 result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
             }
         }
-        printf("%d\t%d\n", m, i);
+        end = clock();
+        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
+        printf("%d\t%d\tTime spent:  %f\n", m, i, time_spent);
     }
 
 }
