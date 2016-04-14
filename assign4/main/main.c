@@ -3,9 +3,9 @@
 #include<stdlib.h>
 
 
-#define X 3
-#define Y 4
-#define Z 5
+#define X 30000
+#define Y 40000
+#define Z 50000
 
 void print_matrix(int *mat, int i, int j);
 void matrix_multiply(int *mat1, int *mat2, int *result, int i, int j, int k);
