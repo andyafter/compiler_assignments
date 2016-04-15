@@ -13,7 +13,9 @@ scheduling and work load reduction.
 The first version of matrix multiplication is done with
  two arrays of integers(simply for testing). My computer is 
 an Alienware 17 R5, and some of the hardware specifications are listed
-below:
+in Table. 1:
+
+
 | Params               | Value          |
 |----------------------+----------------|
 | Architecture:        |         x86_64 |
@@ -37,3 +39,5 @@ below:
 | L2 cache:            |           256K |
 | L3 cache:            |          6144K |
 | NUMA node0 CPU(s):   |            0-7 |
+
+

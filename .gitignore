@@ -3,3 +3,4 @@
 *.yy.c
 calculator\calculator
 *main_out
+*llvm/*

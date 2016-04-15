@@ -14,6 +14,7 @@ Then there will be **main_out** which is the output of the compilation.
 - Add comparison for different data types, and structures like union.
 - Add methods for checking whether the data is correct(CRC, or data compression, where to store)
 
-## Running
+## LLVM 
+The code is compiled into LLVM IR code and stored in llvm folder.
 
 ## Features and Updates

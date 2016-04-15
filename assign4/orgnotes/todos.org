@@ -2,9 +2,30 @@
 
 * Write Generalized Matrix Multiple
 
-** TODO Write the Function!!!
-   DEADLINE: <2016-04-14 Thu>
+** DONE Write the Function!!!
+   CLOSED: [2016-04-14 Thu 22:35] DEADLINE: <2016-04-14 Thu>
 
-** TODO Basically just to try org mode
+** DONE Basically just to try org mode
+   CLOSED: [2016-04-14 Thu 22:35]
 
+** Assignment 4
+
+*** TODO Loop Tiling
+    DEADLINE: <2016-04-15 Fri>
+    
+*** DONE Compile to LLVM IR and Assembly
+    CLOSED: [2016-04-15 Fri 13:54] DEADLINE: <2016-04-15 Fri>
+
+
+** Jobs and Labs
+
+*** TODO Get Money Back from Singtel
+    DEADLINE: <2016-04-15 Fri>
+
+*** TODO Reference Letter Draft
+    DEADLINE: <2016-04-16 Sat>
+
+**** Finish assignment 3
+
+**** Write letter
 * Do Math For Assignment 3

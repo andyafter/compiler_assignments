@@ -48,7 +48,7 @@ void print_matrix(float *mat, int i, int j){
     k = i*i;
     for(n=0;n<i;n++){
         for(m=n*j; m<n*j+j; ++m){
-            printf("%d\t", mat[m]);
+            printf("%f\t", mat[m]);
         }
         printf("\n");
     }
@@ -75,4 +75,12 @@ void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int 
         printf("%d\t%d\tTime spent:  %f\n", m, i, time_spent);
     }
 
+}
+
+void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
+    // this function take cares of basic loop tiling
+    int m, n, l;
+    double time_spent;
+    clock_t begin, end;
+    
 }
