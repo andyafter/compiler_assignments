@@ -10,6 +10,8 @@
 
 void print_matrix(float *mat, int i, int j);
 void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k);
+void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k);
+void sync_mm(float *mat1, float *mat2, float *result, int i, int j, int k);
 // 
 
 
@@ -34,7 +36,8 @@ int main(){
 
     // matrix mutiplication here
     printf("Starting everything!!!\n");
-    matrix_multiply(a, b, c, X, Y, Z);
+    //matrix_multiply(a, b, c, X, Y, Z);
+    tiling_mm(a, b, c, X, Y, Z);
 
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
