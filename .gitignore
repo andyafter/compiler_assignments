@@ -4,3 +4,10 @@
 calculator\calculator
 *main_out
 *llvm/*
+*assign4/GPATH
+*assign4/GRTAGS
+*assign4/GTAGS
+*assign4/llvm/
+*assign4/main/GPATH
+*assign4/main/GRTAGS
+*assign4/main/GTAGS

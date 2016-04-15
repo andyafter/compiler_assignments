@@ -12,20 +12,25 @@
 
 *** DONE Loop Tiling
     CLOSED: [2016-04-15 Fri 17:39] DEADLINE: <2016-04-15 Fri>
-    
 *** DONE Compile to LLVM IR and Assembly
     CLOSED: [2016-04-15 Fri 13:54] DEADLINE: <2016-04-15 Fri>
+    
+*** TODO Compile the program into assembly code
+    DEADLINE: <2016-04-16 Sat>
+
+*** TODO Read Assembly Code
+    DEADLINE: <2016-04-16 Sat>
 
 
 ** Jobs and Labs
 
 *** TODO Get Money Back from Singtel
-    DEADLINE: <2016-04-15 Fri>
+    DEADLINE: <2016-04-18 Mon>
 
 *** TODO Reference Letter Draft
     DEADLINE: <2016-04-16 Sat>
 
-**** Finish assignment 3
+** TODO Finish assignment 3
 
 **** Write letter
-* Do Math For Assignment 3
+
