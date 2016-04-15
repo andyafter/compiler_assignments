@@ -3,9 +3,9 @@
 #include<stdlib.h>
 
 
-#define X 30000
-#define Y 40000
-#define Z 50000
+#define X 20000
+#define Y 30000
+#define Z 40000
 
 void print_matrix(float *mat, int i, int j);
 void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k);
@@ -21,6 +21,7 @@ int main(){
     a = (float *)malloc(X*Y*sizeof(float));
     b = (float *)malloc(Y*Z*sizeof(float));
     c = (float *)malloc(X*Z*sizeof(float));
+    printf("%d\n", sizeof(float));
     for(i=0;i<X*Y;++i){
         a[i] = i;
     }
