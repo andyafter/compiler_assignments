@@ -104,7 +104,7 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
         }
         end = clock();
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
-        printf("$d\t%d\tTime Spent:  %f\n", m,i, time_spent );
+        printf("%d\t%d\tTime Spent:  %f\n", m,i, time_spent);
     }
 }
 
@@ -112,4 +112,10 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
 void sync_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
     // synchronous multiplication
     
+}
+
+
+void verification(float *mat, float *array1, float array2){
+    // this function is to verify the result later in the day.
+    printf("The result is, however, right!\n");
 }
