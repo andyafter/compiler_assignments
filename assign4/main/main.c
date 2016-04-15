@@ -91,6 +91,7 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
     for(m=0;m<i;m+=block_size){
         begin = clock();
         for(l=0; l<k; l+=block_size){
+            printf("Oh, a block!\n");
             #pragma omp parallel for
             for(n=0; n<j; ++n){
                 // result does not have anything to do with n,

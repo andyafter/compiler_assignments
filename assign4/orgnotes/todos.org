@@ -10,8 +10,8 @@
 
 ** Assignment 4
 
-*** TODO Loop Tiling
-    DEADLINE: <2016-04-15 Fri>
+*** DONE Loop Tiling
+    CLOSED: [2016-04-15 Fri 17:39] DEADLINE: <2016-04-15 Fri>
     
 *** DONE Compile to LLVM IR and Assembly
     CLOSED: [2016-04-15 Fri 13:54] DEADLINE: <2016-04-15 Fri>
