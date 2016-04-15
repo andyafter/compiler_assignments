@@ -88,10 +88,10 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
     int m, n, mm, nn, l; // mm however, is the block index, nothing to do with m.
     double time_spent;
     clock_t begin, end;
+    int total_blocks = (i/block_size)*(k/block_size);
     for(m=0;m<i;m+=block_size){
-        begin = clock();
         for(l=0; l<k; l+=block_size){
-            printf("Oh, a block!\n");
+            begin = clock();
             #pragma omp parallel for
             for(n=0; n<j; ++n){
                 // result does not have anything to do with n,
@@ -104,10 +104,10 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
                     }
                 }
             }
+            end = clock();
+            time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
+            printf("%d\t%d\t%d\tTime Spent:  %f\n", m,l, total_blocks ,time_spent);
         }
-        end = clock();
-        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
-        printf("%d\t%d\tTime Spent:  %f\n", m,i, time_spent);
     }
 }
 
