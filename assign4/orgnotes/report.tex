@@ -1,4 +1,4 @@
-% Created 2016-04-14 Thu 21:52
+% Created 2016-04-15 Fri 15:17
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -46,7 +46,9 @@ scheduling and work load reduction.
 The first version of matrix multiplication is done with
  two arrays of integers(simply for testing). My computer is 
 an Alienware 17 R5, and some of the hardware specifications are listed
-below:
+in Table. 1:
+
+
 \begin{center}
 \begin{tabular}{lr}
 Params & Value\\
@@ -74,4 +76,16 @@ L3 cache: & 6144K\\
 NUMA node0 CPU(s): & 0-7\\
 \end{tabular}
 \end{center}
+
+
+Represented below, is my code for basic matrix multiplication:
+\begin{verbatim}
+for(m=0; m<i; ++m){
+    for(n=0; n<k; ++n){
+        for(l=0; l<j; ++l){
+            result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
+        }
+    }
+}
+\end{verbatim}
 \end{document}

@@ -41,3 +41,29 @@ in Table. 1:
 | NUMA node0 CPU(s):   |            0-7 |
 
 
+Represented below, is my code for basic matrix multiplication:
+#+BEGIN_SRC c
+for(m=0; m<i; ++m){
+    for(n=0; n<k; ++n){
+        for(l=0; l<j; ++l){
+            result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
+        }
+    }
+}
+#+END_SRC
+The code is not optimized in anyway, and I used array to represent a matrix simply 
+because I already forgot how to allocate a 2 dimentional pointer. And this piece of code
+is a little bit funny since I messed up the normal order of using m and n. Let's just
+ignore that.
+
+** COMMENT For Basic Multiplication
+
+*** TODO Add pictures of your hardware here.
+    DEADLINE: <2016-04-15 Fri>
+
+
+** Loop Tiling Matrix Multiplication
+Implementation of loop tiling is supposed to be a method of optimizing large 
+matrix optimization.
+*** Tiling Description
+ As shown above I have a CPU with 8 cores and a lot of Cache of 
