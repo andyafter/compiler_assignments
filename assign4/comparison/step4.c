@@ -19,6 +19,8 @@ int main(){
     i = 0; // give you value, but not necessary you can simply read it online
     // test memory allocation
     a = (float *)malloc(X*Y*sizeof(float));
-    
+    for(i=0;i<X*Y;++i){
+        a[i] = i;
+    }
     return 0;
 }

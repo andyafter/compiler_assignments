@@ -12,3 +12,5 @@ calculator\calculator
 *assign4/main/GRTAGS
 *assign4/main/GTAGS
 *.pyc
+*.s
+*.o
