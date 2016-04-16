@@ -12,20 +12,70 @@
 
 *** DONE Loop Tiling
     CLOSED: [2016-04-15 Fri 17:39] DEADLINE: <2016-04-15 Fri>
-    
 *** DONE Compile to LLVM IR and Assembly
     CLOSED: [2016-04-15 Fri 13:54] DEADLINE: <2016-04-15 Fri>
+    
+*** DONE Compile the program into assembly code
+    CLOSED: [2016-04-16 Sat 22:06] DEADLINE: <2016-04-16 Sat>
 
+*** TODO Vectorizing with Intel
+    DEADLINE: <2016-04-17 Sun>
+Read the tutorial of intel website, and something more.
+*** TODO Test on Tile Size
+    DEADLINE: <2016-04-17 Sun>
+
+*** TODO Plot the Result
+    DEADLINE: <2016-04-17 Sun>
+
+**** Single running time 
+Check out if the average output time in the code is stable.
+And draw a diagram to show it. And try it with different 
+size of data.
+
+**** Time with different block size
+Based on the above, design a program to calculate the average time of each block
+size, and put it together to show the general trend.
+
+**** Notice About Blocks
+Block size cannot be something like 300, cause the result could be wrong
+
+*** TODO Read Assembly Code
+    DEADLINE: <2016-04-16 Sat>
+
+*** A better idea!!!! 
+Is, however, to generate small pieces of code,
+the compare the difference between these codes.
+*** TODO Check again, if the tiling is right
+Write some tests maybe. You should spend time only when you finished others already.
 
 ** Jobs and Labs
 
 *** TODO Get Money Back from Singtel
-    DEADLINE: <2016-04-15 Fri>
-
+    DEADLINE: <2016-04-18 Mon>
 *** TODO Reference Letter Draft
     DEADLINE: <2016-04-16 Sat>
 
-**** Finish assignment 3
+*** TODO LLVM IR level optimization
+Using greenthumb to build the stuff. If finished everything before 20th April.
+
+** TODO Finish assignment 3
 
 **** Write letter
-* Do Math For Assignment 3
+
+** Notes on Study with the "Better Idea"
+
+*** DONE Read Registers
+    CLOSED: [2016-04-17 Sun 03:45]
+.section 
+    Roughly, a section is a range of addresses, with
+ no gaps; all data “in” those addresses is treated the
+ same for some particular purpose. For example there
+ may be a “read only” section.
+*** DONE Read MIT Directives(at least align and those used in code)
+    CLOSED: [2016-04-17 Sun 04:08]
+
+
+
+*** TODO Some point you wanna try writing the assembly into your code.
+
+*** TODO Some point you will have to figure out how they calculate floating point multiplication.
