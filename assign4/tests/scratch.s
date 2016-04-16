@@ -15,7 +15,7 @@ Ltmp1:
 	.cfi_def_cfa_register %rbp
 	leaq	L_str(%rip), %rdi
 	callq	_puts
-	leaq	L_.str1(%rip), %rdi
+	leaq	L_.str2(%rip), %rdi
 	movl	$4, %esi
 	xorl	%eax, %eax
 	callq	_printf
