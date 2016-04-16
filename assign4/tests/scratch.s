@@ -36,3 +36,7 @@ L_str:                                  ## @str
 
 
 	.subsections_via_symbols
+
+
+L_.str2:
+        .asciz  "andyafter\n"

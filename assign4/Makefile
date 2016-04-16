@@ -7,6 +7,8 @@ build:
 	gcc -o ./output/main.s -S ./main/main.c
 	gcc -o ./output/tiling.s -S ./main/tiling.c
 	gcc -o ./output/csapp.s -S ./main/csapp.c
+	gcc -c ./tests/scratch.s -o ./output/scratch.o
+	gcc -c ./output/scratch.o -o scratch
 run:
 	./main_out
 
