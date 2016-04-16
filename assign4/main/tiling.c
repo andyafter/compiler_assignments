@@ -14,6 +14,12 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k);
 
 int main(){
     float *a, *b, *c; // one dementional array
+    /*
+      a = [1,2,3,4,5,6,7,8,9] represents the following matrix:
+      1 2 3
+      4 5 6
+      7 8 9
+     */
     int i;
     clock_t begin, end;
     double time_spent;
@@ -21,7 +27,6 @@ int main(){
     a = (float *)malloc(X*Y*sizeof(float));
     b = (float *)malloc(Y*Z*sizeof(float));
     c = (float *)malloc(X*Z*sizeof(float));
-    printf("%d\n", sizeof(float));
     for(i=0;i<X*Y;++i){
         a[i] = i;
     }

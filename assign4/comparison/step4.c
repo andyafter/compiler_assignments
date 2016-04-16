@@ -14,7 +14,7 @@ int main(){
     float *a, *b, *c;
     printf("Hello World!\n");
     
-    printf("%d\n", sizeof(float));
+    printf("%d\n", (int)sizeof(float));
     // add comment
     i = 0; // give you value, but not necessary you can simply read it online
     // test memory allocation

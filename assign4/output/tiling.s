@@ -43,14 +43,8 @@ Ltmp2:
 	movl	%ecx, %edi
 	movq	%rax, -24(%rbp)
 	callq	_malloc
-	leaq	L_.str(%rip), %rdi
-	movl	$4, %ecx
-	movl	%ecx, %esi
 	movq	%rax, -32(%rbp)
-	movb	$0, %al
-	callq	_printf
 	movl	$0, -36(%rbp)
-	movl	%eax, -68(%rbp)         ## 4-byte Spill
 LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	cmpl	$60000000, -36(%rbp)    ## imm = 0x3938700
 	jge	LBB0_4
@@ -95,7 +89,7 @@ LBB0_9:                                 ## =>This Inner Loop Header: Depth=1
 	movl	%eax, -36(%rbp)
 	jmp	LBB0_9
 LBB0_12:
-	leaq	L_.str1(%rip), %rdi
+	leaq	L_.str(%rip), %rdi
 	movsd	LCPI0_0(%rip), %xmm0    ## xmm0 = mem[0],zero
 	movq	-16(%rbp), %rax
 	movq	-24(%rbp), %rsi
@@ -103,9 +97,9 @@ LBB0_12:
 	movl	$20000, %ecx            ## imm = 0x4E20
 	movl	$3000, %r8d             ## imm = 0xBB8
 	movl	$40000, %r9d            ## imm = 0x9C40
-	movq	%rdi, -80(%rbp)         ## 8-byte Spill
+	movq	%rdi, -72(%rbp)         ## 8-byte Spill
 	movq	%rax, %rdi
-	movsd	%xmm0, -88(%rbp)        ## 8-byte Spill
+	movsd	%xmm0, -80(%rbp)        ## 8-byte Spill
 	callq	_tiling_mm
 	callq	_clock
 	movq	%rax, -56(%rbp)
@@ -117,16 +111,16 @@ LBB0_12:
 	movapd	LCPI0_2(%rip), %xmm1    ## xmm1 = [4.503600e+15,1.934281e+25]
 	subpd	%xmm1, %xmm0
 	haddpd	%xmm0, %xmm0
-	movsd	-88(%rbp), %xmm1        ## 8-byte Reload
+	movsd	-80(%rbp), %xmm1        ## 8-byte Reload
                                         ## xmm1 = mem[0],zero
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, -64(%rbp)
 	movsd	-64(%rbp), %xmm0        ## xmm0 = mem[0],zero
-	movq	-80(%rbp), %rdi         ## 8-byte Reload
+	movq	-72(%rbp), %rdi         ## 8-byte Reload
 	movb	$1, %al
 	callq	_printf
 	xorl	%ecx, %ecx
-	movl	%eax, -92(%rbp)         ## 4-byte Spill
+	movl	%eax, -84(%rbp)         ## 4-byte Spill
 	movl	%ecx, %eax
 	addq	$96, %rsp
 	popq	%rbp
@@ -281,7 +275,7 @@ LBB1_15:                                ##   in Loop: Header=BB1_5 Depth=3
 	movl	%eax, -44(%rbp)
 	jmp	LBB1_5
 LBB1_16:                                ##   in Loop: Header=BB1_3 Depth=2
-	leaq	L_.str5(%rip), %rdi
+	leaq	L_.str4(%rip), %rdi
 	movsd	LCPI1_0(%rip), %xmm0    ## xmm0 = mem[0],zero
 	movq	%rdi, -104(%rbp)        ## 8-byte Spill
 	movsd	%xmm0, -112(%rbp)       ## 8-byte Spill
@@ -364,7 +358,7 @@ LBB2_3:                                 ##   Parent Loop BB2_1 Depth=1
 	cmpl	%ecx, %eax
 	jge	LBB2_6
 ## BB#4:                                ##   in Loop: Header=BB2_3 Depth=2
-	leaq	L_.str2(%rip), %rdi
+	leaq	L_.str1(%rip), %rdi
 	movslq	-24(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	cvtss2sd	(%rcx,%rax,4), %xmm0
@@ -377,7 +371,7 @@ LBB2_3:                                 ##   Parent Loop BB2_1 Depth=1
 	movl	%eax, -24(%rbp)
 	jmp	LBB2_3
 LBB2_6:                                 ##   in Loop: Header=BB2_1 Depth=1
-	leaq	L_.str3(%rip), %rdi
+	leaq	L_.str2(%rip), %rdi
 	movb	$0, %al
 	callq	_printf
 	movl	%eax, -36(%rbp)         ## 4-byte Spill
@@ -387,7 +381,7 @@ LBB2_6:                                 ##   in Loop: Header=BB2_1 Depth=1
 	movl	%eax, -20(%rbp)
 	jmp	LBB2_1
 LBB2_8:
-	leaq	L_.str4(%rip), %rdi
+	leaq	L_.str3(%rip), %rdi
 	movl	-12(%rbp), %esi
 	movl	-16(%rbp), %edx
 	movb	$0, %al
@@ -400,21 +394,18 @@ LBB2_8:
 
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
-	.asciz	"%d\n"
-
-L_.str1:                                ## @.str1
 	.asciz	"time spent: %f \n"
 
-L_.str2:                                ## @.str2
+L_.str1:                                ## @.str1
 	.asciz	"%f\t"
 
-L_.str3:                                ## @.str3
+L_.str2:                                ## @.str2
 	.asciz	"\n"
 
-L_.str4:                                ## @.str4
+L_.str3:                                ## @.str3
 	.asciz	"%d \t %d\n"
 
-L_.str5:                                ## @.str5
+L_.str4:                                ## @.str4
 	.asciz	"%d\t%d\t%d\tTime Spent:  %f\n"
 
 

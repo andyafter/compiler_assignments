@@ -24,7 +24,7 @@ int main(){
     a = (float *)malloc(X*Y*sizeof(float));
     b = (float *)malloc(Y*Z*sizeof(float));
     c = (float *)malloc(X*Z*sizeof(float));
-    printf("%d\n", sizeof(float));
+    printf("%d\n", (int)sizeof(float));
     for(i=0;i<X*Y;++i){
         a[i] = i;
     }

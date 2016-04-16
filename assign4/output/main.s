@@ -43,8 +43,7 @@ Ltmp2:
 	movq	%rax, -24(%rbp)
 	callq	_malloc
 	leaq	L_.str(%rip), %rdi
-	movl	$4, %ecx
-	movl	%ecx, %esi
+	movl	$4, %esi
 	movq	%rax, -32(%rbp)
 	movb	$0, %al
 	callq	_printf

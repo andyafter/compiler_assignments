@@ -63,3 +63,19 @@ Using greenthumb to build the stuff. If finished everything before 20th April.
 **** Write letter
 
 ** Notes on Study with the "Better Idea"
+
+*** DONE Read Registers
+    CLOSED: [2016-04-17 Sun 03:45]
+.section 
+    Roughly, a section is a range of addresses, with
+ no gaps; all data “in” those addresses is treated the
+ same for some particular purpose. For example there
+ may be a “read only” section.
+*** DONE Read MIT Directives(at least align and those used in code)
+    CLOSED: [2016-04-17 Sun 04:08]
+
+
+
+*** TODO Some point you wanna try writing the assembly into your code.
+
+*** TODO Some point you will have to figure out how they calculate floating point multiplication.
