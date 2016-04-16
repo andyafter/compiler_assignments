@@ -20,7 +20,7 @@
 
 *** TODO Vectorizing with Intel
     DEADLINE: <2016-04-17 Sun>
-
+Read the tutorial of intel website, and something more.
 *** TODO Test on Tile Size
     DEADLINE: <2016-04-17 Sun>
 
@@ -42,6 +42,9 @@ Block size cannot be something like 300, cause the result could be wrong
 *** TODO Read Assembly Code
     DEADLINE: <2016-04-16 Sat>
 
+*** A better idea!!!! 
+Is, however, to generate small pieces of code,
+the compare the difference between these codes.
 *** TODO Check again, if the tiling is right
 Write some tests maybe. You should spend time only when you finished others already.
 
@@ -49,12 +52,14 @@ Write some tests maybe. You should spend time only when you finished others alre
 
 *** TODO Get Money Back from Singtel
     DEADLINE: <2016-04-18 Mon>
-
 *** TODO Reference Letter Draft
     DEADLINE: <2016-04-16 Sat>
+
+*** TODO LLVM IR level optimization
+Using greenthumb to build the stuff. If finished everything before 20th April.
 
 ** TODO Finish assignment 3
 
 **** Write letter
 
-** Some discovery
+** Notes on Study with the "Better Idea"
