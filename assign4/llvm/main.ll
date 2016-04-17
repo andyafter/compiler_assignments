@@ -86,7 +86,7 @@ main:
 	movl	$30000, %r8d
 	movl	$20000, %ecx
 	movq	%rax, %rdi
-	call	matrix_multiply
+	call	tiling_mm
 	call	clock
 	movq	%rax, -16(%rbp)
 	movq	-48(%rbp), %rax
@@ -294,10 +294,169 @@ matrix_multiply:
 	.cfi_endproc
 .LFE4:
 	.size	matrix_multiply, .-matrix_multiply
+	.section	.rodata
+.LC9:
+	.string	"%d\t%d\t%d\tTime Spent:  %f\n"
+	.text
 	.globl	tiling_mm
 	.type	tiling_mm, @function
 tiling_mm:
 .LFB5:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$96, %rsp
+	movq	%rdi, -56(%rbp)
+	movq	%rsi, -64(%rbp)
+	movq	%rdx, -72(%rbp)
+	movl	%ecx, -76(%rbp)
+	movl	%r8d, -80(%rbp)
+	movl	%r9d, -84(%rbp)
+	movl	-76(%rbp), %ecx
+	movl	$1374389535, %edx
+	movl	%ecx, %eax
+	imull	%edx
+	sarl	$5, %edx
+	movl	%ecx, %eax
+	sarl	$31, %eax
+	movl	%edx, %esi
+	subl	%eax, %esi
+	movl	-84(%rbp), %ecx
+	movl	$1374389535, %edx
+	movl	%ecx, %eax
+	imull	%edx
+	sarl	$5, %edx
+	movl	%ecx, %eax
+	sarl	$31, %eax
+	subl	%eax, %edx
+	movl	%edx, %eax
+	imull	%esi, %eax
+	movl	%eax, -28(%rbp)
+	movl	$0, -48(%rbp)
+	jmp	.L22
+.L31:
+	movl	$0, -32(%rbp)
+	jmp	.L23
+.L30:
+	call	clock
+	movq	%rax, -24(%rbp)
+	movl	$0, -44(%rbp)
+	jmp	.L24
+.L29:
+	movl	$0, -40(%rbp)
+	jmp	.L25
+.L28:
+	movl	$0, -36(%rbp)
+	jmp	.L26
+.L27:
+	movl	-40(%rbp), %eax
+	movl	-48(%rbp), %edx
+	addl	%edx, %eax
+	imull	-84(%rbp), %eax
+	movl	%eax, %edx
+	movl	-36(%rbp), %eax
+	addl	%eax, %edx
+	movl	-32(%rbp), %eax
+	addl	%edx, %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-72(%rbp), %rax
+	addq	%rax, %rdx
+	movl	-40(%rbp), %eax
+	movl	-48(%rbp), %ecx
+	addl	%ecx, %eax
+	imull	-84(%rbp), %eax
+	movl	%eax, %ecx
+	movl	-36(%rbp), %eax
+	addl	%eax, %ecx
+	movl	-32(%rbp), %eax
+	addl	%ecx, %eax
+	cltq
+	leaq	0(,%rax,4), %rcx
+	movq	-72(%rbp), %rax
+	addq	%rcx, %rax
+	movss	(%rax), %xmm1
+	movl	-40(%rbp), %eax
+	movl	-48(%rbp), %ecx
+	addl	%ecx, %eax
+	imull	-80(%rbp), %eax
+	movl	%eax, %ecx
+	movl	-44(%rbp), %eax
+	addl	%ecx, %eax
+	cltq
+	leaq	0(,%rax,4), %rcx
+	movq	-56(%rbp), %rax
+	addq	%rcx, %rax
+	movss	(%rax), %xmm2
+	movl	-32(%rbp), %eax
+	movl	-36(%rbp), %ecx
+	addl	%eax, %ecx
+	movl	-44(%rbp), %eax
+	imull	-84(%rbp), %eax
+	addl	%ecx, %eax
+	cltq
+	leaq	0(,%rax,4), %rcx
+	movq	-64(%rbp), %rax
+	addq	%rcx, %rax
+	movss	(%rax), %xmm0
+	mulss	%xmm2, %xmm0
+	addss	%xmm1, %xmm0
+	movss	%xmm0, (%rdx)
+	addl	$1, -36(%rbp)
+.L26:
+	cmpl	$99, -36(%rbp)
+	jle	.L27
+	addl	$1, -40(%rbp)
+.L25:
+	cmpl	$99, -40(%rbp)
+	jle	.L28
+	addl	$1, -44(%rbp)
+.L24:
+	movl	-44(%rbp), %eax
+	cmpl	-80(%rbp), %eax
+	jl	.L29
+	call	clock
+	movq	%rax, -16(%rbp)
+	movq	-24(%rbp), %rax
+	movq	-16(%rbp), %rdx
+	subq	%rax, %rdx
+	movq	%rdx, %rax
+	cvtsi2sdq	%rax, %xmm0
+	movsd	.LC3(%rip), %xmm1
+	divsd	%xmm1, %xmm0
+	movsd	%xmm0, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movl	-28(%rbp), %ecx
+	movl	-32(%rbp), %edx
+	movl	-48(%rbp), %esi
+	movq	%rax, -96(%rbp)
+	movsd	-96(%rbp), %xmm0
+	movl	$.LC9, %edi
+	movl	$1, %eax
+	call	printf
+	addl	$100, -32(%rbp)
+.L23:
+	movl	-32(%rbp), %eax
+	cmpl	-84(%rbp), %eax
+	jl	.L30
+	addl	$100, -48(%rbp)
+.L22:
+	movl	-48(%rbp), %eax
+	cmpl	-76(%rbp), %eax
+	jl	.L31
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE5:
+	.size	tiling_mm, .-tiling_mm
+	.globl	sync_mm
+	.type	sync_mm, @function
+sync_mm:
+.LFB6:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -314,8 +473,35 @@ tiling_mm:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE5:
-	.size	tiling_mm, .-tiling_mm
+.LFE6:
+	.size	sync_mm, .-sync_mm
+	.section	.rodata
+	.align 8
+.LC10:
+	.string	"The result is, however, right!"
+	.text
+	.globl	verification
+	.type	verification, @function
+verification:
+.LFB7:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movss	%xmm0, -20(%rbp)
+	movl	$.LC10, %edi
+	call	puts
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE7:
+	.size	verification, .-verification
 	.section	.rodata
 	.align 4
 .LC1:

@@ -1,23 +1,21 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.macosx_version_min 10, 11
-	.globl	_main
-	.align	4, 0x90
-_main:                                  ## @main
+	.file	"csapp.c"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
 	.cfi_startproc
-## BB#0:
 	pushq	%rbp
-Ltmp0:
 	.cfi_def_cfa_offset 16
-Ltmp1:
-	.cfi_offset %rbp, -16
+	.cfi_offset 6, -16
 	movq	%rsp, %rbp
-Ltmp2:
-	.cfi_def_cfa_register %rbp
-	xorl	%eax, %eax
-	movl	$0, -4(%rbp)
+	.cfi_def_cfa_register 6
+	movl	$0, %eax
 	popq	%rbp
-	retq
+	.cfi_def_cfa 7, 8
+	ret
 	.cfi_endproc
-
-
-.subsections_via_symbols
+.LFE0:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu 4.8.4-2ubuntu1~14.04.1) 4.8.4"
+	.section	.note.GNU-stack,"",@progbits

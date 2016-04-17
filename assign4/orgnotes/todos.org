@@ -18,6 +18,15 @@
 *** DONE Compile the program into assembly code
     CLOSED: [2016-04-16 Sat 22:06] DEADLINE: <2016-04-16 Sat>
 
+*** TODO Read the Chinese Version File First!!!
+Read it, carefully, then watch couple videos, to find out different components
+of the tiling.s.
+
+*** TODO Find out what can be done in order to optimize it
+Is it like better loop tiling? Or is it like tricks in arithmetic 
+calculation or something?
+
+*** TODO Compile with and without pragma, see the difference. between the assembly code
 *** TODO Vectorizing with Intel
     DEADLINE: <2016-04-17 Sun>
 Read the tutorial of intel website, and something more.
@@ -42,6 +51,8 @@ Block size cannot be something like 300, cause the result could be wrong
 *** TODO Read Assembly Code
     DEADLINE: <2016-04-16 Sat>
 
+*** TODO Watch the Intel video first
+Watch the Video and know better about loop tiling.
 *** A better idea!!!! 
 Is, however, to generate small pieces of code,
 the compare the difference between these codes.
