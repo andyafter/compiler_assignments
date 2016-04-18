@@ -1,38 +1,168 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=prv_main 2016.4.3)  3 APR 2016 14:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  18 APR 2016 17:57
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**&prv_main _region_.tex
-(./_region_.tex
-LaTeX2e <2015/01/01>
-Babel <3.9l> and hyphenation patterns for 79 languages loaded.
-CUSTOMISED FORMAT. Preloaded files:
-        .
- article.cls    2014/09/29 v1.4h Standard LaTeX document class
-  size12.clo    2014/09/29 v1.4h Standard LaTeX file (size option)
-geometry.sty    2010/09/12 v5.6 Page Geometry
-  keyval.sty    2014/10/28 v1.15 key=value parser (DPC)
-   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
-  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
- amsmath.sty    2013/01/14 v2.14 AMS math features
- amstext.sty    2000/06/29 v2.01
-  amsgen.sty    1999/11/30 v2.0
-  amsbsy.sty    1999/11/29 v1.2d
-  amsopn.sty    1999/12/14 v2.01 operator names
-  amsthm.sty    2015/03/04 v2.20.2
- amssymb.sty    2013/01/14 v3.01 AMS font symbols
-amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
-graphicx.sty    2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
-graphics.sty    2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
-    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
-graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
-  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
-infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
- ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-    umsa.fd    2013/01/14 v3.01 AMS symbols A
-    umsb.fd    2013/01/14 v3.01 AMS symbols B
-        .
+**\nonstopmode\nofiles\PassOptionsToPackage{active,tightpage,auctex}{preview}\A
+tBeginDocument{\ifx\ifPreview\undefined\RequirePackage[displaymath,floats,graph
+ics,textmath,sections,footnotes]{preview}[2004/11/05]\fi} \input _region_.tex
+(./_region_.tex  !name(main.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen111
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen112
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count90
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count91
+\leftroot@=\count92
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count93
+\DOTSCASE@=\count94
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen113
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count95
+\c@MaxMatrixCols=\count96
+\dotsspace@=\muskip10
+\c@parentequation=\count97
+\dspbrk@lvl=\count98
+\tag@help=\toks17
+\row@=\count99
+\column@=\count100
+\maxfields@=\count101
+\andhelp@=\toks18
+\eqnshift@=\dimen114
+\alignsep@=\dimen115
+\tagshift@=\dimen116
+\tagwidth@=\dimen117
+\totwidth@=\dimen118
+\lineht@=\dimen119
+\@envbody=\toks19
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks26
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count102
+))
+\Gin@req@height=\dimen120
+\Gin@req@width=\dimen121
+)
 No file _region_.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
@@ -46,20 +176,20 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-(/Users/panan/.emacs.d/elpa/auctex-11.88.9/latex/preview.sty
-Package: preview 2010/02/14 11.88 (AUCTeX/preview-latex)
+(/Users/panan/.emacs.d/elpa/auctex-11.89.3/latex/preview.sty
+Package: preview 2010/02/14 11.89 (AUCTeX/preview-latex)
 
-(/Users/panan/.emacs.d/elpa/auctex-11.88.9/latex/prtightpage.def
+(/Users/panan/.emacs.d/elpa/auctex-11.89.3/latex/prtightpage.def
 \PreviewBorder=\dimen122
 )
-(/Users/panan/.emacs.d/elpa/auctex-11.88.9/latex/prauctex.def
+(/Users/panan/.emacs.d/elpa/auctex-11.89.3/latex/prauctex.def
 No auxiliary output files.
 
 
 \hbadness=\count103
 \hfuzz=\dimen123
-(/Users/panan/.emacs.d/elpa/auctex-11.88.9/latex/prauctex.cfg))
-(/Users/panan/.emacs.d/elpa/auctex-11.88.9/latex/prfootnotes.def)
+(/Users/panan/.emacs.d/elpa/auctex-11.89.3/latex/prauctex.cfg))
+(/Users/panan/.emacs.d/elpa/auctex-11.89.3/latex/prfootnotes.def)
 \pr@snippet=\count104
 \pr@box=\box28
 \pr@output=\toks27
@@ -158,19 +288,48 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
- !name(main.tex) !offset(151)   !name(main.tex) !offset(175)  ) 
-Here is how much of TeX's memory you used:
- 806 strings out of 490779
- 12696 string characters out of 6105163
- 108386 words of memory out of 5000000
- 6535 multiletter control sequences out of 15000+600000
- 10072 words of font info for 38 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 37i,4n,24p,244b,133s stack positions out of 5000i,500n,10000p,200000b,80000s
+ !name(main.tex) !offset(207) 
+./_region_.tex:35: Preview: Snippet 1 started.
+<-><->
+      
+l.35 $
+      $M\approx$$
+Not a real error.
 
-No pages of output.
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Preview: Tightpage -32891 -32891 32891 32891
+./_region_.tex:35: Preview: Snippet 1 ended.(950272+0x30785865).
+<-><->
+      
+l.35 $$M\approx$$
+                 
+Not a real error.
+
+[1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+ !name(main.tex) !offset(211)  ) 
+Here is how much of TeX's memory you used:
+ 3082 strings out of 493089
+ 41619 string characters out of 6134841
+ 106163 words of memory out of 5000000
+ 6520 multiletter control sequences out of 15000+600000
+ 8285 words of font info for 32 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,3n,32p,455b,118s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb>
+Output written on _region_.pdf (1 page, 15594 bytes).
 PDF statistics:
- 0 PDF objects out of 1000 (max. 8388607)
+ 16 PDF objects out of 1000 (max. 8388607)
+ 10 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

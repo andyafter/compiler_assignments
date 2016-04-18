@@ -175,47 +175,84 @@ There is actually solution to this one.
 Considering that in this problem X and Y has exactly the same size. There is no need to take into consideration
 the utilization of loop interchange.
 
-Anyway, the principle of loop tiling is to load  into the
-the cache as less times  as possible. Also in this case only 8 digits
-are allowed in each cache line. The sudo code for tiling is shown as
-below:
-
+Anyway, the idea of loop tiling is to increase cache. 
+Consider the given case:
 \begin{verbatim}
-for (int i = 0; i < n; i += blocksize) {
-    for (int j = 0; j < n; j += blocksize) {
-        // the block below will then be sent
-        for (int k = i; k < i + blocksize; ++k) {
-            for (int l = j; l < j + blocksize; ++l) {
-                X[k, l] = Y[l, k];
-            }
-        }
+for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+        X[i, j] = Y[j, i];
     }
 }
+
+\end{verbatim}
+This however, will result in loading the data in X and Y 
+unnecessary number of times. The program will miss every access to one
+of the array and every step of $C$ on the other, where $C$ is the size
+of the cache. And the total cache miss would be: $$N^2+\frac{N^2}{C}$$
+
+And in this case it's $N^2+\frac{N^2}{8}$. 
+
+Loop tiling code is shown as below(notice that both X and Y are
+$N\times N$ matrix):
+\begin{verbatim}
+
+for(ii=0; ii<N; ii+=block_size)
+    for(jj=0; jj<N; jj+=block_size)
+        for(i=ii; i<min(ii+block_size); i++)
+            for(j=jj; j<min(jj+block_size); j++)
+                X[i, j] = Y[j, i]
 \end{verbatim}
 
-The available cache integer storage is 8 digits. So here the block
-size should be 2, this way, every $2\times 2$ block of both $x$ and
-$y$ will be loaded to the cache and processed.
+%%%%%%%% The following however, is what has been added %%%%%%%%
+
 
 The loop will be excuted as the following graph shows:
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[scale=0.2]{img/tilling.png}
-  \caption{Simple Graph of Tiling.}
+  \includegraphics[scale=0.3]{img/mat.png}
+  \caption{Loop tiling for $4\times 4$matrix.}
   \label{fig:n}
 \end{figure}
 
-In \ref{fig:n} the input means the matrix of y and the output is the
-matrix  of x. Each block represents a $2\times 2$ block.
+In \ref{fig:n} alphabetic letters represents values in each position
+of a $N\times N$ matrix. Blocks with the same color will be loaded
+into into cache at the same time(symmetrical in X and Y). And the
+position with the same letter will switch value. 
 
-The cache hit, before the tiling, should be 50\%. Considering that
-only 8 digits were in the cache. And after the tiling it should be
-100\%, since it only loads the piece of matrix that is needed to do
-the transpose.
+The previous paragraph however, will be strongly criticized if this is
+an assignment in a CS6+ class since the whole thing is not clear and
+it leads to infinite way of understanding even for a native English
+speaker. So the process of loop tiling is shown below:
+\begin{itemize}[circle]
+\item Cache was empty at first and the first round will experience a
+  missing hit;
+\item The tile is gonna be loaded and iterated without new cache
+  misses;
+\item When operation on the tile is finished, there will be new miss
+  hit, and new tile is gonna be loaded again;
+\item Same process goes on until program reaches the end.
+\end{itemize}
 
+So how much is the new cache misses. When going through this part
+before the deadline I actually was not very clear about every
+step. And after that I consulted a couple guys about cache
+mechanism. 
 
+Let $M$ denote the total cache misses and $b$ the block grid size, in
+this case $b=2\times 2=4$
 
+Then we have:
+$$M\approx 2\frac{N^2}{b} = \frac{N^2}{2}$$
+
+In a word:
+\begin{itemize}
+\item No tiling:  $N^2+\frac{N^2}{8}$ 
+\item With tiling: $\frac{N^2}{2}$
+\end{itemize}
+
+Different methods and algorithms will have different results in for
+tiling cache miss. 
 
 
 
