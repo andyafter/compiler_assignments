@@ -11,7 +11,7 @@ build:
 	#gcc -c ./tests/scratch.s -o ./output/scratch.o
 	gcc -c ./tests/basic.s -o ./output/basic_test.o
 	#gcc ./output/scratch.o -o scratch
-	gcc -c ./output/basic_test.o -o basic_test
+	gcc ./output/basic_test.o -o basic_test
 run:
 	./main_out
 
