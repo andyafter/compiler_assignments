@@ -15,3 +15,4 @@ calculator\calculator
 *.s
 *.o
 ./assign4/output/*
+!./assign4/tests/basic.s
