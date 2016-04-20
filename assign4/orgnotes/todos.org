@@ -61,18 +61,19 @@ Write some tests maybe. You should spend time only when you finished others alre
 
 ** Jobs and Labs
 
-*** TODO Get Money Back from Singtel
-    DEADLINE: <2016-04-18 Mon>
-*** TODO Reference Letter Draft
-    DEADLINE: <2016-04-16 Sat>
+*** DONE Get Money Back from Singtel
+    CLOSED: [2016-04-20 Wed 01:43] DEADLINE: <2016-04-18 Mon>
+*** DONE Reference Letter Draft
+    CLOSED: [2016-04-20 Wed 01:43] DEADLINE: <2016-04-16 Sat>
 
-*** TODO LLVM IR level optimization
+*** LLVM IR level optimization
 Using greenthumb to build the stuff. If finished everything before 20th April.
 
-** TODO Finish assignment 3
+** DONE Finish assignment 3
+   CLOSED: [2016-04-20 Wed 01:43]
 
-**** Write letter
-
+**** DONE Write letter
+     CLOSED: [2016-04-20 Wed 01:42]
 ** Notes on Study with the "Better Idea"
 
 *** DONE Read Registers
@@ -87,6 +88,15 @@ Using greenthumb to build the stuff. If finished everything before 20th April.
 
 
 
-*** TODO Some point you wanna try writing the assembly into your code.
+*** DONE Some point you wanna try writing the assembly into your code.
+    CLOSED: [2016-04-20 Wed 01:42]
 
-*** TODO Some point you will have to figure out how they calculate floating point multiplication.
+*** DONE Some point you will have to figure out how they calculate floating point multiplication.
+    CLOSED: [2016-04-20 Wed 01:42]
+
+** Learning Emacs:
+
+*** TODO Org mode math for latex
+
+*** TODO Org Mode for emacs everything.
+*** TODO Set up yasnippet for emacs
