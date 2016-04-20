@@ -2,13 +2,13 @@
 #include<time.h>
 #include<stdlib.h>
 
-
-#define X 20000
-#define Y 30000
-#define Z 40000
-#define block_size 100
-
+void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k);
 
 int main(){
+    printf("hello\n");
     return 0;
+}
+
+void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int k){
+    int t = i;
 }

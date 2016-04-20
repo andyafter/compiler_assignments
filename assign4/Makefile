@@ -8,8 +8,10 @@ build:
 	gcc -o ./output/main.s -S ./main/main.c
 	gcc -o ./output/tiling.s -S ./main/tiling.c
 	gcc -o ./output/csapp.s -S ./main/csapp.c
-	gcc -c ./tests/scratch.s -o ./output/scratch.o
-	gcc ./output/scratch.o -o scratch
+	#gcc -c ./tests/scratch.s -o ./output/scratch.o
+	gcc -c ./tests/basic.s -o ./output/basic_test.o
+	#gcc ./output/scratch.o -o scratch
+	gcc -c ./output/basic_test.o -o basic_test
 run:
 	./main_out
 
