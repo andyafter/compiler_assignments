@@ -66,6 +66,12 @@ main:
         movl    $3,%r8d    
         movl    $4,%r9d
         call    test_fun
+        movq    -24(%rbp),%rax
+        movq    $0,%rbx
+        
+	movaps  (%rax,%rbx,4), %xmm0
+	addps   %xmm0, %xmm0
+        movaps  %xmm0, (%rax, %rbx, 4)
 
         
 	movq    -24(%rbp), %rdi         
