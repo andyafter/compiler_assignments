@@ -21,6 +21,8 @@ main:
         movq    $1,  %rsi
         movq    $.LC2, %rdi
         call    printf
+        movl    $0, %eax
+        leave
         .cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
