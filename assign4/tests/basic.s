@@ -17,10 +17,10 @@ main:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-        movq    $1,  %rsi
-        movq    $.LC2, %rdi
-        call    printf
         subq	$80, %rsp
+        movq    $1,  %rsi
+	movq    $.LC2, %rdi
+	call    printf
         call    clock
         movq    %rax, -48(%rbp)   #here X,Y,Z is 2, 3, 4
         movl	$24, %edi         #allocation of a
@@ -30,12 +30,23 @@ main:
         call	malloc
         movq    %rax, -32(%rbp)
         movl	$32, %edi         #allocation of c
-        call	malloc  
+        call	malloc
         movq    %rax, -24(%rbp)         #storing c to stack
-        movq    -24(%rbp), %rdi         # testing priting c 
-        movl    $3, %esi                
-        movl    $2, %edx
-        call    print_matrix            #testing printing of matrix
+        movq    $0, %rbx
+ .ADDVALUE:                     #at first rax carries the value of c 
+        addq    $1, %rbx
+        cvtsi2ss %rbx, %xmm0       # put the value directly into the array
+        movss   %xmm0, (%rax,%rbx,4)
+        cmpl    $36, %ebx       # change 32 to size of c
+	jl      .ADDVALUE
+
+	movq    -24(%rbp), %rdi         # testing priting c
+        movl    $2, %esi                
+	movl    $4, %edx
+	call    print_matrix            #testing printing of matrix
+
+
+        # returning
         movl    $0, %eax
         leave
         .cfi_def_cfa 7, 8
