@@ -21,6 +21,13 @@ main:
         movq    $1,  %rsi
         movq    $.LC2, %rdi
         call    printf
+        movq    -40(%rsp), %rdi
+        movq    -40(%rsp), %rsi
+        movq    -40(%rsp), %rdx
+        movl    $4, %ecx
+        movl    $3, %r8d
+        movl    $2, %r9d
+        call    print_matrix
         movl    $0, %eax
         leave
         .cfi_def_cfa 7, 8
@@ -29,6 +36,32 @@ main:
 .LFE2:
 	.size	main, .-main
 	.section	.rodata
+
+.LC7:
+	.string	"new function\n"
+	.text
+	.globl	test_fun
+	.type	test_fun, @function        
+test_fun:
+.LFB5:
+        .cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq    $1,  %rsi
+	movq    $.LC7, %rdi
+	call    printf
+	movl    $0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE5:
+	.size	test_fun, .-test_fun
+	.section	.rodata
+
 .LC3:
 	.string	"%f\t"
 .LC4:
