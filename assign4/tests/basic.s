@@ -1,4 +1,3 @@
-	.file	"tiling.c"
 	.section	.rodata
 .LC2:
 	.string	"time spent: %d \n"
@@ -21,13 +20,22 @@ main:
         movq    $1,  %rsi
         movq    $.LC2, %rdi
         call    printf
-        movq    -40(%rsp), %rdi
-        movq    -40(%rsp), %rsi
-        movq    -40(%rsp), %rdx
-        movl    $4, %ecx
-        movl    $3, %r8d
-        movl    $2, %r9d
-        call    print_matrix
+        subq	$80, %rsp
+        call    clock
+        movq    %rax, -48(%rbp)   #here X,Y,Z is 2, 3, 4
+        movl	$24, %edi         #allocation of a
+        call	malloc
+        movq    %rax, -40(%rbp)
+        movl	$48, %edi         #allocation of b
+        call	malloc
+        movq    %rax, -32(%rbp)
+        movl	$32, %edi         #allocation of c
+        call	malloc  
+        movq    %rax, -24(%rbp)         #storing c to stack
+        movq    -24(%rbp), %rdi         # testing priting c 
+        movl    $3, %esi                
+        movl    $2, %edx
+        call    print_matrix            #testing printing of matrix
         movl    $0, %eax
         leave
         .cfi_def_cfa 7, 8
@@ -38,7 +46,7 @@ main:
 	.section	.rodata
 
 .LC7:
-	.string	"new function\n"
+	.string	"new function, %d\n"
 	.text
 	.globl	test_fun
 	.type	test_fun, @function        
@@ -50,7 +58,7 @@ test_fun:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	movq    $1,  %rsi
+	movq    %rcx,  %rsi
 	movq    $.LC7, %rdi
 	call    printf
 	movl    $0, %eax
