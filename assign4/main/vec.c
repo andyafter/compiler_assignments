@@ -90,10 +90,11 @@ void matrix_multiply(float *mat1, float *mat2, float *result, int i, int j, int 
 
 
 void vect(float *mat1, float *mat2, float *result, int i, int j, int k){
-    //function for testing loop vectorizing
+    //function for testing loop vectoring
     int m, n, l;
     double time_spent;
     clock_t begin, end;
+    
     for(m=0; m<i; ++m){
         begin = clock();
         #pragma clang loop vectorize(enable)
@@ -109,4 +110,31 @@ void vect(float *mat1, float *mat2, float *result, int i, int j, int k){
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
         printf("%d\t%d\tTime spent:  %f\n", m, i, time_spent);
     }
+
+      /* 
+         for(ia=0;ia<a.h;ia+=tileSize)
+         {
+             for(jb=0;jb<b.w;jb+=tileSize)
+             {
+                 for(ja=0;ja<a.w;ja+=tileSize)
+                 {
+                 //tile mult
+                     for(ia2=ia;ia2<MIN(ia+tileSize,a.h);ia2++)
+                     {
+                         for(jb2=jb;jb2<MIN(jb+tileSize,b.w);jb2++)
+                         {
+                             for(ja2=ja;ja2<MIN(ja+tileSize,a.w);ja2++)
+                             {
+                                 float aij = a.mat[ia2*a.w+ja2];
+                                 float bij = b.mat[ja2*b.w+jb2];
+                                 c.mat[ia2*c.w+jb2] += aij*bij;
+                             }
+                         }
+                     }
+                 }
+             }
+         }
+
+
+       */
 }
