@@ -5,7 +5,7 @@
 	.globl	main
 	.type	main, @function
 .LC6:   
-        .string	"One Round Clock Time: \t%lf\n"
+        .string	"One Round Clock Time: \t%f\n"
 	.text
 	.globl	main
 	.type	main, @function        
@@ -61,7 +61,7 @@ main:
         call    clock
 	movq    %rax, -48(%rbp)
 
-	movq    $1111, %rsi
+	movq    %rax, %rsi
 	movq    $.LC7, %rdi
 	call    printf
         
@@ -85,22 +85,21 @@ main:
         movq    -24(%rbp), %rax
         movq    $0, %rbx
 
-        addl    $8000, %r12d
-        movl    $24000000, %ebx
-        cmpl    %ebx, %r12d
+        addl    $8000,   %r12d
+        movl    $800000, %ebx  # 8000*100, the block size
+        cmpl    %ebx,    %r12d
         jl      .MULTIPLY
         jge     .RAWB
 
 .RAWB:
-        call    clock
 	movq    -48(%rbp), %rbx
+        call    clock
 	subq    %rbx, %rax
 	movq    %rax, %rsi
-	movq    $.LC6, %rdi
+	movq    $.LC7, %rdi
 	call    printf
-
         
-        movl    $48000000, %ebx
+        movl    $800000, %ebx
         addq    $8000,  %r10
         movq    $0,     %r12
         cmpl    %ebx, %r10d
