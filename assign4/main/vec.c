@@ -97,9 +97,12 @@ void vect(float *mat1, float *mat2, float *result, int i, int j, int k){
     for(m=0; m<i; ++m){
         begin = clock();
         #pragma clang loop vectorize(enable)
-        for(n=0; n<k; ++n){
+        for(n=0; n<k; n=n+4){
             for(l=0; l<j; ++l){
                 result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
+                result[m*k+n+1] += mat1[m*j+l]*mat2[l*k+n+1];
+                result[m*k+n+2] += mat1[m*j+l]*mat2[l*k+n+2];
+                result[m*k+n+3] += mat1[m*j+l]*mat2[l*k+n+3];
             }
         }
         end = clock();
