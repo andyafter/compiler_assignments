@@ -5,7 +5,7 @@
 	.globl	main
 	.type	main, @function
 .LC6:   
-        .string	"number: %d\n"
+        .string	"One Round Clock Time: \t%lf\n"
 	.text
 	.globl	main
 	.type	main, @function        
@@ -58,11 +58,20 @@ main:
 	cmpl    $6000000, %ebx       
 	jl      .ADDVALUEA
 
+        call    clock
+	movq    %rax, -48(%rbp)
+
+	movq    $1111, %rsi
+	movq    $.LC7, %rdi
+	call    printf
+        
+
         movl    $0, %r12d       # loop for a
         movl    $0, %r10d      # loop for b
 .MULTIPLY:
         movq    -40(%rbp), %rdi
         movq    -32(%rbp), %rsi
+        addq    %r10,   %rsi
         movq    -24(%rbp), %rdx
         addq    %r9,   %rdi
 
@@ -71,7 +80,7 @@ main:
         movl    $4000, %r9d
         call    test_fun           # test_fun is to multiply one
         movq    -24(%rbp), %rcx
-        movq    $0, %rbx
+        movq    %r12, %rbx
         movss   %xmm3, (%rcx, %rbx, 4)
         movq    -24(%rbp), %rax
         movq    $0, %rbx
@@ -80,7 +89,32 @@ main:
         movl    $24000000, %ebx
         cmpl    %ebx, %r12d
         jl      .MULTIPLY
+        jge     .RAWB
 
+.RAWB:
+        call    clock
+	movq    -48(%rbp), %rbx
+	subq    %rbx, %rax
+	movq    %rax, %rsi
+	movq    $.LC6, %rdi
+	call    printf
+
+        
+        movl    $48000000, %ebx
+        addq    $8000,  %r10
+        movq    $0,     %r12
+        cmpl    %ebx, %r10d
+        jle     .MULTIPLY
+        
+        
+
+        call    clock
+        movq    -48(%rbp), %rbx
+        subq    %rbx, %rax
+        movq    %rax, %rsi
+        movq    $.LC7, %rdi
+        call    printf
+        
         
         # test alignment!!
 	#movaps  (%rax,%rbx,4), %xmm0
@@ -137,14 +171,15 @@ test_fun:       # this function is only for single value of c
 	mulps   %xmm1, %xmm0
         # here add them all to %xmm3
         addss   %xmm0, %xmm3
-        shufps  $39,   %xmm0, %xmm0
+        shufps  $0x39,   %xmm0, %xmm0
         addss   %xmm0, %xmm3
-	shufps  $39,   %xmm0, %xmm0
+	shufps  $0x39,   %xmm0, %xmm0
         addss   %xmm0, %xmm3
-	shufps  $39,   %xmm0, %xmm0
+	shufps  $0x39,   %xmm0, %xmm0
 	addss   %xmm0, %xmm3
         cmpl    %r8d,  %edx
-        jle     .MYMUL      
+        jle     .MYMUL
+        
 
         movq    $0, %rax  
 	leave

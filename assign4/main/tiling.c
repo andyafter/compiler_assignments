@@ -36,6 +36,7 @@ int main(){
     for(i=0;i<X*Z;++i)
         c[i]=0;
 
+    
     // matrix mutiplication here
     tiling_mm(a, b, c, X, Y, Z);
     end = clock();
@@ -73,18 +74,9 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
                             mat1[m*j+mm*j+n]*mat2[nn+l+n*k];    
                     }
                 }
-            
-
-
-
-
-
-
-
-
-}
+            }
             end = clock();
-            time_spent = (double)(end - begin) / CLOCKS_PER_SEC;            
+            time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             printf("%d\t%d\t%d\tTime Spent:  %f\n", m,l, total_blocks ,time_spent);
         }
     }
