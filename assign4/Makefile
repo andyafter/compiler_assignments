@@ -1,5 +1,6 @@
 build:
-	gcc -o ./output/main_out.o main/main.c
+	gcc -o ./output/main.o main/main.c
+	gcc -o outmain main/tiling.c
 	gcc -o ./transpose main/vec.c
 	gcc -o ./output/csapp.o main/csapp.c
 	gcc -o ./output/tiling.o main/tiling.c

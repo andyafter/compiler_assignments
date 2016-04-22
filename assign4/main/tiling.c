@@ -4,9 +4,9 @@
 
 
 #define X 20000
-#define Y 3000
+#define Y 30000
 #define Z 40000
-#define block_size 80
+#define block_size 1000
 
 void print_matrix(float *mat, int i, int j);
 void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k);
