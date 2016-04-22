@@ -5,7 +5,7 @@
 	.globl	main
 	.type	main, @function
 .LC6:   
-        .string	"hello"
+        .string	"number: %d\n"
 	.text
 	.globl	main
 	.type	main, @function        
@@ -23,13 +23,13 @@ main:
 	call    printf
         call    clock
         movq    %rax, -48(%rbp)   #here X,Y,Z is 2, 3, 4
-        movl	$24, %edi         #allocation of a
+        movl	$24000000, %edi         #allocation of a
         call	malloc
         movq    %rax, -40(%rbp)
-        movl	$48, %edi         
+        movl	$48000000, %edi         
         call	malloc            #allocation of b
         movq    %rax, -32(%rbp)
-        movl	$32, %edi         
+        movl	$32000000, %edi         
         call	malloc            #allocation of c
         movq    %rax, -24(%rbp)         #storing c to stack
         movq    $0, %rbx
@@ -39,7 +39,7 @@ main:
         addq    $1, %rbx
         cvtsi2ss %rbx, %xmm0       # put the value directly into the array
         movss   %xmm0, (%rax,%rbx,4)
-        cmpl    $8, %ebx       # change 32 to size of c
+        cmpl    $8000000, %ebx       # change 32 to size of c
 	jl      .ADDVALUEC
         movq    $0, %rbx
 .ADDVALUEB:                     #at first rax carries the value of c
@@ -47,7 +47,7 @@ main:
 	addq    $1, %rbx
 	cvtsi2ss %rbx, %xmm0   
 	movss   %xmm0, (%rax,%rbx,4)
-	cmpl    $12, %ebx       
+	cmpl    $12000000, %ebx       
 	jl      .ADDVALUEB
         movq    $0, %rbx
 .ADDVALUEA:                     
@@ -55,29 +55,42 @@ main:
         addq    $1, %rbx
 	cvtsi2ss %rbx, %xmm0       
 	movss   %xmm0, (%rax,%rbx,4)
-	cmpl    $6, %ebx       
+	cmpl    $6000000, %ebx       
 	jl      .ADDVALUEA
 
+        movl    $0, %r12d       # loop for a
+        movl    $0, %r10d      # loop for b
 .MULTIPLY:
         movq    -40(%rbp), %rdi
         movq    -32(%rbp), %rsi
         movq    -24(%rbp), %rdx
-        movl    $2,%ecx    
-        movl    $3,%r8d    
-        movl    $4,%r9d
-        call    test_fun
-        movq    -24(%rbp),%rax
-        movq    $0,%rbx
-        
-	movaps  (%rax,%rbx,4), %xmm0
-	addps   %xmm0, %xmm0
-        movaps  %xmm0, (%rax, %rbx, 4)
+        addq    %r9,   %rdi
+
+        movl    $2000, %ecx    
+        movl    $3000, %r8d    
+        movl    $4000, %r9d
+        call    test_fun           # test_fun is to multiply one
+        movq    -24(%rbp), %rcx
+        movq    $0, %rbx
+        movss   %xmm3, (%rcx, %rbx, 4)
+        movq    -24(%rbp), %rax
+        movq    $0, %rbx
+
+        addl    $8000, %r12d
+        movl    $24000000, %ebx
+        cmpl    %ebx, %r12d
+        jl      .MULTIPLY
 
         
+        # test alignment!!
+	#movaps  (%rax,%rbx,4), %xmm0
+	#addps   %xmm0, %xmm0
+        #movss  %xmm3, (%rax, %rbx, 4)
+
 	movq    -24(%rbp), %rdi         
         movl    $2, %esi                
 	movl    $4, %edx
-	call    print_matrix            
+	call    print_matrix 
 
 
         # returning
@@ -95,7 +108,7 @@ main:
 	.text
 	.globl	test_fun
 	.type	test_fun, @function        
-test_fun:
+test_fun:       # this function is only for single value of c
 .LFB5:
         .cfi_startproc
 	pushq	%rbp
@@ -104,23 +117,36 @@ test_fun:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
         subq	$80, %rsp
-        movq    %rdi,-40(%rbp)
-	movq    %rsi,-32(%rbp)
-	movq    %rdx,-24(%rbp)
-        movl    %ecx, -44(%rbp)         #x
-	movl    %r8d, -48(%rbp)         #y
-	movl    %r9d, -52(%rbp)         #z
-.MYMUL:        
-        movq    -24(%rbp), %rax 
-	movq    $10000, %rbx
-	cvtsi2ss %rbx, %xmm0
-        movq    $0, %rbx
-	movss   %xmm0, (%rax,%rbx,4)
+        movq    %rdi, -40(%rbp)
+	movq    %rsi, -32(%rbp)
+	movq    %rdx, -24(%rbp)
+        movq    %rcx, -52(%rbp)         #x
+        movq    %rcx, %r8               #x
+        
+        movq    -24(%rbp), %rcx         #rcx is c
+        movq    -32(%rbp), %rbx         #rbx is b
+        movq    -40(%rbp), %rax         #rax is a
+        movq    $0, %rdx
+        xorps   %xmm3,  %xmm3
+        movq    $200000, %r8
+        jmp     .MYMUL
+.MYMUL:                                 # sum is in %imm3, but only to see the time
+        addq    $4,    %rdx
+	movaps  (%rax, %rdx,4), %xmm0
+	movaps  (%rcx, %rdx,4), %xmm1
+	mulps   %xmm1, %xmm0
+        # here add them all to %xmm3
+        addss   %xmm0, %xmm3
+        shufps  $39,   %xmm0, %xmm0
+        addss   %xmm0, %xmm3
+	shufps  $39,   %xmm0, %xmm0
+        addss   %xmm0, %xmm3
+	shufps  $39,   %xmm0, %xmm0
+	addss   %xmm0, %xmm3
+        cmpl    %r8d,  %edx
+        jle     .MYMUL      
 
-        movq    %rcx,  %rsi
-	movq    $.LC7, %rdi
-	call    printf
-	movl    $0, %eax
+        movq    $0, %rax  
 	leave
 	.cfi_def_cfa 7, 8
 	ret

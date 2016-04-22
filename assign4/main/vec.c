@@ -3,9 +3,9 @@
 #include<stdlib.h>
 
 
-#define X 2000
-#define Y 3000
-#define Z 4000
+#define X 40000
+#define Y 30000
+#define Z 40000
 #define block_size 100
 
 void print_matrix(float *mat, int i, int j);
@@ -17,23 +17,32 @@ int main(){
     int i, j, k;
     clock_t begin, end;
     double time_spent;
-    begin = clock();
     a = (float *)malloc(X*Y*sizeof(float));
     b = (float *)malloc(Y*Z*sizeof(float));
     c = (float *)malloc(X*Z*sizeof(float));
     printf("%d\n", (int)sizeof(float));
-    for(i=0;i<X*Y;++i){
-        a[i] = i;
-    }
-    for(i=0;i<Y*Z;++i)
-        b[i]=i;
+    /* for(i=0;i<X*Y;++i){ */
+    /*     a[i] = i; */
+    /* } */
+    /* for(i=0;i<Y*Z;++i) */
+    /*     b[i]=i; */
 
     for(i=0;i<X*Z;++i)
-        c[i]=0;
+        c[i]=i;
 
+    begin = clock();
+    for(i=0; i<X; ++i){
+        end = clock();
+        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("time spent: %f \n", time_spent);
+        for(j=0; j<Z; ++j){
+            k = c[i*X+j];
+            c[j*X+i]=k;
+        }
+    }
     // matrix mutiplication here
     printf("Starting everything!!!\n");
-    matrix_multiply(a, b, c, X, Y, Z);
+    //matrix_multiply(a, b, c, X, Y, Z);
 
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
