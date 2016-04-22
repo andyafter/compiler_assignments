@@ -65,7 +65,7 @@ void tiling_mm(float *mat1, float *mat2, float *result, int i, int j, int k){
     int total_blocks = (i/block_size)*(k/block_size);
     for(m=0;m<i;m+=block_size){
         for(l=0; l<k; l+=block_size){
-            begin = clock();
+    
             #pragma omp parallel for
             for(n=0; n<j; ++n){
                 for(mm=0; mm<block_size; ++mm){

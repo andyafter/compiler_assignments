@@ -7,63 +7,170 @@ the limitations of cache and the speed of the the RAM access.
 This report is about conducting matrix multiplication with 
 low level optimizations. Loop tiling and LLVM optimizations
 are used in order to provide an acceptable result for a better
-scheduling and work load reduction.
+scheduling and work load reduction. I used some methods for 
+the analysis of the code efficiency in order not to run the whole thing
+over and over. 
 
-** Basic Matrix Multiplication
-The first version of matrix multiplication is done with
- two arrays of integers(simply for testing). My computer is 
-an Alienware 17 R5, and some of the hardware specifications are listed
-in Table. 1:
-
-
-| Params               | Value          |
-|----------------------+----------------|
-| Architecture:        |         x86_64 |
-| CPU op-mode(s):      | 32-bit, 64-bit |
-| Byte Order:          |  Little Endian |
-| CPU(s):              |              8 |
-| On-line CPU(s) list: |            0-7 |
-| Thread(s) per core:  |              2 |
-| Core(s) per socket:  |              4 |
-| Socket(s):           |              1 |
-| NUMA node(s):        |              1 |
-| Vendor ID:           |   GenuineIntel |
-| CPU family:          |              6 |
-| Model:               |             60 |
-| Stepping:            |              3 |
-| CPU MHz:             |        901.875 |
-| BogoMIPS:            |        4788.98 |
-| Virtualization:      |           VT-x |
-| L1d cache:           |            32K |
-| L1i cache:           |            32K |
-| L2 cache:            |           256K |
-| L3 cache:            |          6144K |
-| NUMA node0 CPU(s):   |            0-7 |
+** Basic Matrix 
+ The first version of matrix multiplication is done with
+  two arrays of integers(simply for testing). My computer is 
+ an Alienware 17 R5, and some of the hardware specifications are listed
+ in Table. 1:
 
 
-Represented below, is my code for basic matrix multiplication:
-#+BEGIN_SRC c
-for(m=0; m<i; ++m){
-    for(n=0; n<k; ++n){
-        for(l=0; l<j; ++l){
-            result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
+ |---------------------+----------------|
+ |---------------------+----------------|
+ | Params              |          Value |
+ |---------------------+----------------|
+ | Architecture:       |         x86_64 |
+ | CPU op-mode(s):     | 32-bit, 64-bit |
+ | CPU(s):             |              8 |
+ | Thread(s) per core: |              2 |
+ | NUMA node(s):       |              1 |
+ | CPU family:         |              6 |
+ | Stepping:           |              3 |
+ | CPU MHz:            |        901.875 |
+ | BogoMIPS:           |        4788.98 |
+ | L1d cache:          |            32K |
+ | L1i cache:          |            32K |
+ | L2 cache:           |           256K |
+ | L3 cache:           |          6144K |
+ |---------------------+----------------|
+ System specification:
+
+ |------------------+--------------|
+ | Operating System | Ubuntu 14.04 |
+ | RAM              | 16GB         |
+ | CPU              | Intel        |
+ |------------------+--------------|
+
+
+
+
+ Represented below, is my code for basic matrix multiplication:
+ #+BEGIN_SRC c
+ for(m=0; m<i; ++m){
+     for(n=0; n<k; ++n){
+         for(l=0; l<j; ++l){
+             result[m*k+n] += mat1[m*j+l]*mat2[l*k+n];
+         }
+     }
+ }
+ #+END_SRC
+ The code is not optimized in anyway, and I used array to represent a matrix simply 
+ because I already forgot how to allocate a 2 dimentional pointer. And this piece of code
+ is a little bit funny since I messed up the normal order of using m and n. Let's just
+ ignore that.
+
+ For this basic version of matrix multiplication, the settings of the 2 matrixes are:
+ $a: 20000\times 30000$,
+ and $b: 30000\times 40000$. Where a is mat1 and b is mat2. Later part I will use c to denote the result. 
+
+ The verification is done for the multiplication result, and it's under the 
+ tests folder: *verify.c*. It's basically just multiplication of matrix then print 
+ out, nothing more.
+
+
+ 
+*** Analysis Methods
+  In order to push to the limit and be efficient at testing the same time, I used couple methods for the analysis of the whole program:
+  1. In order to calculate the running time, I printed the running time  every time *m* changes. 
+  2. Calculate the average of the printed time, then multiply it with total amount of print that will happen. 
+  3. For loop tiling version of the code(and all the later part), print the running time for every tile. 
+
+Here is an example of the printing:
+
+#+CAPTION: Example about time monitoring.
+#+NAME:   fig:example
+[[./example.png]]
+
+
+
+*** Performance
+I turned off the graphic desktop to minimize the main system disturbance. 
+
+So the basic matrix multiplication takes about 11GB of RAM. And the whole running process will take approximately 6 days.
+
+** Loop Tiling 
+This is pretty much the same idea as the last assignment(God I hope I can get the marks back!!!). You do the loop in a cache friendly way, 
+then you save some time. 
+
+Okay here is the code that I used for loop tiling:
+
+ #+BEGIN_SRC c
+for(m=0;m<i;m+=block_size){
+    for(l=0; l<k; l+=block_size){
+        #pragma omp parallel for
+        for(n=0; n<j; ++n){
+            for(mm=0; mm<block_size; ++mm){
+                for(nn=0; nn<block_size; ++nn){
+                    result[m*k+mm*k+nn+l]+=\
+                      mat1[m*j+mm*j+n]*mat2[nn+l+n*k];    
+                }
+            }
         }
     }
 }
-#+END_SRC
-The code is not optimized in anyway, and I used array to represent a matrix simply 
-because I already forgot how to allocate a 2 dimentional pointer. And this piece of code
-is a little bit funny since I messed up the normal order of using m and n. Let's just
-ignore that.
+ #+END_SRC
+
+I did not use use pragma for vectorization. Later I will explain. With the basic loop tiling, I achieved a better running time of *1.5* days!!!
+Which is a great leap. 
+
+So for loop tiling my original settings for the loop tile is *100*. I tested with difference lopp sizes, and print time for a single block like this:
+#+CAPTION: Printing Time. 
+#+NAME:   fig:tile_example
+[[./tileexample.png]]
+
+I tested(manually) the running time for different tile sizes. The data of these tiles can be found in the *.txt* in the assignment folder. As for the limitation of
+time I selected the following tile size for testing: *10, 20, 40, 50, 80, 100, 200, 500, 1000*. 
+
+Performance might vary from tile to tile:
+#+begin_src gnuplot :var data=data-table :file output.png
+set title "Performance of Different Tile Sizes"
+plot sin(x)
+!!!!!!!!!!!!!!!!!!!!!!!!! Change here !!!!!!!!!!!!!!!!!!!
+#+end_src
+
+Funny thing is that you can see that the tile size less than 40 is pretty high. This is because if the tile size is small the performance 
+is gonna be like the original one. Noticing here 130000 seconds is around 1.5 days. Which means that no matter what you do, if you want to multiply 
+matrixes with 10GB  amount of size, you probably will have to spend so much time with this computer.
+
+** Assembly and SSE
+
+Here is a funny story:
+
+Well this part actually took me a lot of time. Because I actually have not really coded in assembly. The only thing that I have coded is in FPGA. And 
+my assembly knowledge is all about how computer works and how to optimize C. So I took a course in Coursera and play all the videos in $\times 2$ speed. 
+Then I found out that I just learned X86 assembly. 
+
+Then I read the SSE Instruction set, and wrote some simple code for GCC to compiler, adding one line each time and see what happens with the outcome. 
+Again only to find out that the only knowledge I needed was how to use *%xmm* registers. So basically going to the class really will help a lot. 
+
+Anyway for this problem, I simplified the target a little. Here is some assumptions that I made:
+\begin{itemize}
+\item Allocation of the memory is the same to the original problems;
+\item Analyzing a full matrix tiling is equal to analyzing the running time of a single tile block;
+\item The result of the MM does not affect the analysis of the efficiency;
+\item The loading of the result matrix affects the whole program very little;
+\item Vectorization can be done by matrix transpose.
+\end{itemize}
+
+Since I am using arrays for matrix multiplications, I only have to provide the running test for a single tiling block. Even the matrix is very big, 
+matrix transpose actually only takes tens of seconds in memory. Here is how long  a $30000\times 40000$ matrix is transposed in my computer:
+#+CAPTION: Matrix Transpose 
+#+NAME:   fig:transpose
+[[./transpose.png]]
+
+My assembly code is provided in the *test/basic.s*. Two functions were written by me are *main* and *test_func*. The program prints
+the running time every time a block multiplication is finished. And my estimated time for the whole program is *1.58* days.
+
+** Vectorization
+My code seems to be able to get vectorized originally. 
+
 
 ** COMMENT For Basic Multiplication
 
-*** TODO Add pictures of your hardware here.
-    DEADLINE: <2016-04-15 Fri>
+*** DONE Add pictures of your hardware here.
+    CLOSED: [2016-04-22 Fri 22:42] DEADLINE: <2016-04-15 Fri>
 
 
-** Loop Tiling Matrix Multiplication
-Implementation of loop tiling is supposed to be a method of optimizing large 
-matrix optimization.
-*** Tiling Description
- As shown above I have a CPU with 8 cores and a lot of Cache of 

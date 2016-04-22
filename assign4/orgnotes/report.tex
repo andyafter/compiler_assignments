@@ -1,4 +1,4 @@
-% Created 2016-04-15 Fri 15:17
+% Created 2016-04-22 Fri 22:46
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -30,7 +30,7 @@
 
 Org-mode Testing Report
 \section{Matrix Multiplication with GCC}
-\label{sec:orgheadline3}
+\label{sec:orgheadline7}
 
 \subsection{Abstract}
 \label{sec:orgheadline1}
@@ -39,10 +39,12 @@ the limitations of cache and the speed of the the RAM access.
 This report is about conducting matrix multiplication with 
 low level optimizations. Loop tiling and LLVM optimizations
 are used in order to provide an acceptable result for a better
-scheduling and work load reduction.
+scheduling and work load reduction. I used some methods for 
+the analysis of the code efficiency in order not to run the whole thing
+over and over. 
 
-\subsection{Basic Matrix Multiplication}
-\label{sec:orgheadline2}
+\subsection{Basic Matrix}
+\label{sec:orgheadline4}
 The first version of matrix multiplication is done with
  two arrays of integers(simply for testing). My computer is 
 an Alienware 17 R5, and some of the hardware specifications are listed
@@ -51,31 +53,39 @@ in Table. 1:
 
 \begin{center}
 \begin{tabular}{lr}
+\hline
+\hline
 Params & Value\\
 \hline
 Architecture: & x86\(_{\text{64}}\)\\
 CPU op-mode(s): & 32-bit, 64-bit\\
-Byte Order: & Little Endian\\
 CPU(s): & 8\\
-On-line CPU(s) list: & 0-7\\
 Thread(s) per core: & 2\\
-Core(s) per socket: & 4\\
-Socket(s): & 1\\
 NUMA node(s): & 1\\
-Vendor ID: & GenuineIntel\\
 CPU family: & 6\\
-Model: & 60\\
 Stepping: & 3\\
 CPU MHz: & 901.875\\
 BogoMIPS: & 4788.98\\
-Virtualization: & VT-x\\
 L1d cache: & 32K\\
 L1i cache: & 32K\\
 L2 cache: & 256K\\
 L3 cache: & 6144K\\
-NUMA node0 CPU(s): & 0-7\\
+\hline
 \end{tabular}
 \end{center}
+System specification:
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Operating System & Ubuntu 14.04\\
+RAM & 16GB\\
+CPU & Intel\\
+\hline
+\end{tabular}
+\end{center}
+
+
 
 
 Represented below, is my code for basic matrix multiplication:
@@ -88,4 +98,121 @@ for(m=0; m<i; ++m){
     }
 }
 \end{verbatim}
+The code is not optimized in anyway, and I used array to represent a matrix simply 
+because I already forgot how to allocate a 2 dimentional pointer. And this piece of code
+is a little bit funny since I messed up the normal order of using m and n. Let's just
+ignore that.
+
+For this basic version of matrix multiplication, the settings of the 2 matrixes are:
+\(a: 20000\times 30000\),
+and \(b: 30000\times 40000\). Where a is mat1 and b is mat2. Later part I will use c to denote the result. 
+
+The verification is done for the multiplication result, and it's under the 
+tests folder: \textbf{verify.c}. It's basically just multiplication of matrix then print 
+out, nothing more.
+
+
+
+\subsubsection{Analysis Methods}
+\label{sec:orgheadline2}
+In order to push to the limit and be efficient at testing the same time, I used couple methods for the analysis of the whole program:
+\begin{enumerate}
+\item In order to calculate the running time, I printed the running time  every time \textbf{m} changes.
+\item Calculate the average of the printed time, then multiply it with total amount of print that will happen.
+\item For loop tiling version of the code(and all the later part), print the running time for every tile.
+\end{enumerate}
+
+Here is an example of the printing:
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./example.png}
+\caption{\label{fig:orgparagraph1}
+Example about time monitoring.}
+\end{figure}
+
+
+
+\subsubsection{Performance}
+\label{sec:orgheadline3}
+I turned off the graphic desktop to minimize the main system disturbance. 
+
+So the basic matrix multiplication takes about 11GB of RAM. And the whole running process will take approximately 6 days.
+
+\subsection{Loop Tiling}
+\label{sec:orgheadline5}
+This is pretty much the same idea as the last assignment(God I hope I can get the marks back!!!). You do the loop in a cache friendly way, 
+then you save some time. 
+
+Okay here is the code that I used for loop tiling:
+
+\begin{verbatim}
+for(m=0;m<i;m+=block_size){
+    for(l=0; l<k; l+=block_size){
+        #pragma omp parallel for
+        for(n=0; n<j; ++n){
+            for(mm=0; mm<block_size; ++mm){
+                for(nn=0; nn<block_size; ++nn){
+                    result[m*k+mm*k+nn+l]+=\
+                      mat1[m*j+mm*j+n]*mat2[nn+l+n*k];    
+                }
+            }
+        }
+    }
+}
+\end{verbatim}
+
+I did not use use pragma for vectorization. Later I will explain. With the basic loop tiling, I achieved a better running time of \textbf{1.5} days!!!
+Which is a great leap. 
+
+So for loop tiling my original settings for the loop tile is \textbf{100}. I tested with difference lopp sizes, and print time for a single block like this:
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./tileexample.png}
+\caption{\label{fig:orgparagraph2}
+Printing Time.}
+\end{figure}
+
+I tested(manually) the running time for different tile sizes. The data of these tiles can be found in the \textbf{.txt} in the assignment folder. As for the limitation of
+time I selected the following tile size for testing: \textbf{10, 20, 40, 50, 80, 100, 200, 500, 1000}. 
+
+Performance might vary from tile to tile:
+\begin{verbatim}
+set title "Performance of Different Tile Sizes"
+plot sin(x)
+!!!!!!!!!!!!!!!!!!!!!!!!! Change here !!!!!!!!!!!!!!!!!!!
+\end{verbatim}
+
+Funny thing is that you can see that the tile size less than 40 is pretty high. This is because if the tile size is small the performance 
+is gonna be like the original one. Noticing here 130000 seconds is around 1.5 days. Which means that no matter what you do, if you want to multiply 
+matrixes with 10GB  amount of size, you probably will have to spend so much time with this computer.
+
+\subsection{Assembly and SSE}
+\label{sec:orgheadline6}
+
+Here is a funny story:
+
+Well this part actually took me a lot of time. Because I actually have not really coded in assembly. The only thing that I have coded is in FPGA. And 
+my assembly knowledge is all about how computer works and how to optimize C. So I took a course in Coursera and play all the videos in \(\times 2\) speed. 
+Then I found out that I just learned X86 assembly. 
+
+Then I read the SSE Instruction set, and wrote some simple code for GCC to compiler, adding one line each time and see what happens with the outcome. 
+Again only to find out that the only knowledge I needed was how to use \textbf{\%xmm} registers. So basically going to the class really will help a lot. 
+
+Anyway for this problem, I simplified the target a little. Here is some assumptions that I made:
+\begin{itemize}
+\item Allocation of the memory is the same to the original problems;
+\item Analyzing a full matrix tiling is equal to analyzing the running time of a single tile block;
+\item The result of the MM does not affect the analysis of the efficiency;
+\item Vectorization can be done by matrix transpose.
+\end{itemize}
+
+Since I am using arrays for matrix multiplications, I only have to provide the running test for a single tiling block. Even the matrix is very big, 
+matrix transpose actually only takes tens of seconds in memory. Here is how long  a \(30000\times 40000\) matrix is transposed in my computer:
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./transpose.png}
+\caption{\label{fig:orgparagraph3}
+Printing Time.}
+\end{figure}
 \end{document}
