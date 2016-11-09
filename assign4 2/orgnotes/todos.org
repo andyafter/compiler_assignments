@@ -1,0 +1,108 @@
+
+
+* Write Generalized Matrix Multiple
+
+** DONE Write the Function!!!
+   CLOSED: [2016-04-14 Thu 22:35] DEADLINE: <2016-04-14 Thu>
+
+** DONE Basically just to try org mode
+   CLOSED: [2016-04-14 Thu 22:35]
+
+** Assignment 4
+
+*** DONE Loop Tiling
+    CLOSED: [2016-04-15 Fri 17:39] DEADLINE: <2016-04-15 Fri>
+*** DONE Compile to LLVM IR and Assembly
+    CLOSED: [2016-04-15 Fri 13:54] DEADLINE: <2016-04-15 Fri>
+    
+*** DONE Compile the program into assembly code
+    CLOSED: [2016-04-16 Sat 22:06] DEADLINE: <2016-04-16 Sat>
+
+*** DONE Read the Chinese Version File First!!!
+    CLOSED: [2016-04-20 Wed 21:14]
+Read it, carefully, then watch couple videos, to find out different components
+of the tiling.s.
+
+*** TODO Find out what can be done in order to optimize it
+Is it like better loop tiling? Or is it like tricks in arithmetic 
+calculation or something?
+
+*** TODO Compile with and without pragma, see the difference. between the assembly code
+*** TODO Vectorizing with Intel
+    DEADLINE: <2016-04-17 Sun>
+Read the tutorial of intel website, and something more.
+*** TODO Test on Tile Size
+    DEADLINE: <2016-04-17 Sun>
+
+*** TODO Plot the Result
+    DEADLINE: <2016-04-17 Sun>
+
+**** Single running time 
+Check out if the average output time in the code is stable.
+And draw a diagram to show it. And try it with different 
+size of data.
+
+**** Time with different block size
+Based on the above, design a program to calculate the average time of each block
+size, and put it together to show the general trend.
+
+**** Notice About Blocks
+Block size cannot be something like 300, cause the result could be wrong
+
+*** TODO Read Assembly Code
+    DEADLINE: <2016-04-16 Sat>
+
+*** TODO Watch the Intel video first
+Watch the Video and know better about loop tiling.
+*** A better idea!!!! 
+Is, however, to generate small pieces of code,
+the compare the difference between these codes.
+*** TODO Check again, if the tiling is right
+Write some tests maybe. You should spend time only when you finished others already.
+*** TODO Vectorization, better version
+*** TODO SIMDization
+*** 
+
+** Jobs and Labs
+
+*** DONE Get Money Back from Singtel
+    CLOSED: [2016-04-20 Wed 01:43] DEADLINE: <2016-04-18 Mon>
+*** DONE Reference Letter Draft
+    CLOSED: [2016-04-20 Wed 01:43] DEADLINE: <2016-04-16 Sat>
+
+Done and messed up.
+
+*** LLVM IR level optimization
+Using greenthumb to build the stuff. If finished everything before 20th April.
+
+** DONE Finish assignment 3
+   CLOSED: [2016-04-20 Wed 01:43]
+
+**** DONE Write letter
+     CLOSED: [2016-04-20 Wed 01:42]
+** Notes on Study with the "Better Idea"
+
+*** DONE Read Registers
+    CLOSED: [2016-04-17 Sun 03:45]
+.section 
+    Roughly, a section is a range of addresses, with
+ no gaps; all data “in” those addresses is treated the
+ same for some particular purpose. For example there
+ may be a “read only” section.
+*** DONE Read MIT Directives(at least align and those used in code)
+    CLOSED: [2016-04-17 Sun 04:08]
+
+
+
+*** DONE Some point you wanna try writing the assembly into your code.
+    CLOSED: [2016-04-20 Wed 01:42]
+
+*** DONE Some point you will have to figure out how they calculate floating point multiplication.
+    CLOSED: [2016-04-20 Wed 01:42]
+
+** Learning Emacs:
+
+*** TODO Org mode math for latex
+
+*** TODO Org Mode for emacs everything.
+*** TODO Set up yasnippet for emacs

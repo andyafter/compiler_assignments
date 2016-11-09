@@ -31,13 +31,7 @@
     "capt-of"
     "hyperref")
    (LaTeX-add-labels
-    "sec:orgheadline1"
     "sec:orgheadline2"
-    "sec:orgheadline3"
-    "sec:orgheadline4"
-    "sec:orgheadline5"
-    "sec:orgheadline6"
-    "sec:orgheadline7"
-    "sec:orgheadline8"))
+    "sec:orgheadline1"))
  :latex)
 
